@@ -1,6 +1,9 @@
 name: commit-checks
 on: [push]
 
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+
 jobs:
   commit-checks:
     runs-on: windows-2022
