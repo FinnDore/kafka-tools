@@ -1,0 +1,28 @@
+{
+    "root": "apps/kafka-tools-e2e",
+    "sourceRoot": "apps/kafka-tools-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nrwl/cypress:cypress",
+            "options": {
+                "cypressConfig": "apps/kafka-tools-e2e/cypress.json",
+                "devServerTarget": "kafka-tools:serve:development"
+            },
+            "configurations": {
+                "production": {
+                    "devServerTarget": "kafka-tools:serve:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/kafka-tools-e2e/**/*.{js,ts}"]
+            }
+        }
+    },
+    "tags": [],
+    "implicitDependencies": ["kafka-tools"]
+}

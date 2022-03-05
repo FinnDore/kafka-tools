@@ -1,0 +1,29 @@
+<svg width="211" height="237" viewBox="0 0 211 237" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_3_75)">
+        <rect x="68" width="21" height="237" fill="black" />
+        <rect x="68" width="21" height="237" fill="#4200FF" />
+        <mask id="mask0_3_75" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-72" y="54" width="135" height="183">
+            <rect x="-72" y="54" width="135" height="183" fill="black" />
+            <rect x="-72" y="54" width="135" height="183" fill="black" />
+        </mask>
+        <g mask="url(#mask0_3_75)">
+            <rect x="-11" y="43" width="23" height="116" transform="rotate(-45 -11 43)" fill="black" />
+            <rect x="-11" y="43" width="23" height="116" transform="rotate(-45 -11 43)" fill="black" />
+        </g>
+        <mask id="mask1_3_75" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="94" y="0" width="135" height="237">
+            <rect x="94" width="135" height="237" fill="black" />
+            <rect x="94" width="135" height="237" fill="black" />
+        </mask>
+        <g mask="url(#mask1_3_75)">
+            <rect x="71" y="129" width="23" height="179" transform="rotate(-45 71 129)" fill="black" />
+            <rect x="71" y="129" width="23" height="179" transform="rotate(-45 71 129)" fill="black" />
+            <rect x="209" y="-31" width="23" height="253" transform="rotate(45 209 -31)" fill="black" />
+            <rect x="209" y="-31" width="23" height="253" transform="rotate(45 209 -31)" fill="black" />
+        </g>
+    </g>
+    <defs>
+        <clipPath id="clip0_3_75">
+            <rect width="211" height="237" fill="white" />
+        </clipPath>
+    </defs>
+</svg>

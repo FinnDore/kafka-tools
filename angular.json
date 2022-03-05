@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "projects": {
+    "kafka-tools": "apps/kafka-tools",
+    "kafka-tools-e2e": "apps/kafka-tools-e2e",
+    "tauri-client": "apps/tauri-client"
+  }
+}

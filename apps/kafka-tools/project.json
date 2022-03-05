@@ -1,0 +1,97 @@
+{
+    "projectType": "application",
+    "root": "apps/kafka-tools",
+    "sourceRoot": "apps/kafka-tools/src",
+    "prefix": "kafka-tools",
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/kafka-tools",
+                "index": "apps/kafka-tools/src/index.html",
+                "main": "apps/kafka-tools/src/main.ts",
+                "polyfills": "apps/kafka-tools/src/polyfills.ts",
+                "tsConfig": "apps/kafka-tools/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                    "apps/kafka-tools/src/favicon.ico",
+                    "apps/kafka-tools/src/assets"
+                ],
+                "styles": [
+                    "apps/kafka-tools/src/styles.scss",
+                    "apps/kafka-tools/src/_styles/css-reset.scss"
+                ],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/kafka-tools/src/environments/environment.ts",
+                            "with": "apps/kafka-tools/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "kafka-tools:build:production"
+                },
+                "development": {
+                    "browserTarget": "kafka-tools:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "kafka-tools:build"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "apps/kafka-tools/src/**/*.ts",
+                    "apps/kafka-tools/src/**/*.html"
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/kafka-tools"],
+            "options": {
+                "jestConfig": "apps/kafka-tools/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}
