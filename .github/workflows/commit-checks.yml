@@ -2,7 +2,7 @@ name: commit-checks
 on: [push]
 
 jobs:
-  lint:
+  commit-checks:
     runs-on: windows-2022
     if: ${{ github.event_name == 'push' }}
     steps:
