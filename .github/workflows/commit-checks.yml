@@ -18,6 +18,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14"
+      - run: |
+          echo "BASE: ${{ env.NX_BASE }}"
+          echo "HEAD: ${{ env.NX_HEAD }}"
       - run: npm ci
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=build
