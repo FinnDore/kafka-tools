@@ -1,6 +1,6 @@
 {
     "root": "apps/tauri-client",
-    "sourceRoot": "apps/tauri-client/src",
+    "sourceRoot": "apps/tauri-client",
     "projectType": "application",
     "targets": {
         "build": {
@@ -8,7 +8,8 @@
             "options": {
                 "commands": [
                     "cd ./apps/tauri-client && npm i && npm run tauri build"
-                ]
+                ],
+                "outputPath": "apps/tauri-client/src-tauri/target"
             }
         },
         "serve": {
@@ -20,6 +21,5 @@
             }
         }
     },
-    "tags": [],
     "implicitDependencies": ["kafka-tools"]
 }

@@ -4,27 +4,6 @@
         "kafka-tools": "apps/kafka-tools",
         "kafka-tools-e2e": "apps/kafka-tools-e2e",
         "tauri-client": "apps/tauri-client",
-        "workspace": {
-            "root": ".",
-            "targets": {
-                "version": {
-                    "executor": "@jscutlery/semver:version",
-                    "options": {
-                        "syncVersions": true,
-                        "commitMessageFormat": "chore(${projectName}): release version ${version}",
-                        "baseBranch": "main",
-                        "postTargets": ["workspace:github"]
-                    }
-                },
-                "github": {
-                    "executor": "@jscutlery/semver:github",
-                    "options": {
-                        "tag": "${version}",
-                        "title": "Release ${version}",
-                        "generateNotes": true
-                    }
-                }
-            }
-        }
+        "workspace": "./workspace"
     }
 }

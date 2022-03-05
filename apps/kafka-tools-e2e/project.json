@@ -1,6 +1,6 @@
 {
     "root": "apps/kafka-tools-e2e",
-    "sourceRoot": "apps/kafka-tools-e2e/src",
+    "sourceRoot": "apps/kafka-tools-e2e",
     "projectType": "application",
     "targets": {
         "e2e": {

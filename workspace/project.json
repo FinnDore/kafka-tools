@@ -1,0 +1,24 @@
+{
+    "root": "workspace",
+    "sourceRoot": "workspace",
+    "projectType": "application",
+    "targets": {
+        "version": {
+            "executor": "@jscutlery/semver:version",
+            "options": {
+                "syncVersions": true,
+                "commitMessageFormat": "chore(${projectName}): release version ${version}",
+                "baseBranch": "main",
+                "postTargets": ["workspace:github"]
+            }
+        },
+        "github": {
+            "executor": "@jscutlery/semver:github",
+            "options": {
+                "tag": "${version}",
+                "title": "Release ${version}",
+                "generateNotes": true
+            }
+        }
+    }
+}
