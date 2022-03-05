@@ -20,5 +20,6 @@
             }
         }
     },
-    "tags": []
+    "tags": [],
+    "implicitDependencies": "kafka-tools"
 }
