@@ -9,5 +9,5 @@
         "**/.plastic": true
     },
     "hide-files.files": [],
-    "conventionalCommits.scopes": ["workspace", "tauri-client"]
+    "conventionalCommits.scopes": ["workspace", "tauri-client", "kafka-tools"]
 }
