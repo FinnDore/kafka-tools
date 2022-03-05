@@ -1,0 +1,45 @@
+name: commit-checks
+on: [push]
+
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+
+jobs:
+  commit-checks:
+    runs-on: windows-2022
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout [lint]
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - run: |
+          echo "BASE: ${{ env.NX_BASE }}"
+          echo "HEAD: ${{ env.NX_HEAD }}"
+      - run: npm ci
+      - run: npx nx-cloud start-ci-run
+      - run: npx nx affected --target=build
+      - run: npx nx affected --target=test --parallel
+      - run: npx nx affected --target=lint
+      - run: npx nx-cloud stop-all-agents
+
+  agents:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        agent: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - run: npm install
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: npx nx-cloud start-agent

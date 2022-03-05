@@ -32,7 +32,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y webkit2gtk-4.0
       - name: build kafka-tools
-        run: npm i && npx nx build kafka-tools --prod
+        run: |
+          npm ci
+          npx nx build kafka-tools
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
