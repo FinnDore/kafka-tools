@@ -20,5 +20,6 @@
                 "generateNotes": true
             }
         }
-    }
+    },
+    "implicitDependencies": ["tauri-client"]
 }
