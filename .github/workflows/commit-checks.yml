@@ -17,8 +17,8 @@ jobs:
         uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: "14"
-      - run: npm ci
+          node-version: 16
+      - run: npm install
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=build
       - run: npx nx affected --target=test --parallel
@@ -45,3 +45,36 @@ jobs:
       - run: npm ci
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
+
+  build-tauri:
+    strategy:
+      fail-fast: false
+
+      matrix:
+        platform: [macos-latest, ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Uninstall tauri locally
+        run: cd apps/tauri-client && npm un @tauri-apps/cli
+      - name: install Rust stable
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: install webkit2gtk (ubuntu only)
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webkit2gtk-4.0
+      - name: build kafka-tools
+        run: |
+          npm ci
+          npx nx build kafka-tools
+      - name: build tauri-client
+        run: npx nx build tauri-client
