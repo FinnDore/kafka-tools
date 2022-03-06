@@ -27,7 +27,7 @@ jobs:
 
   agents:
     runs-on: ubuntu-latest
-    name: Agent 1
+    name: build test lint
     timeout-minutes: 60
     strategy:
       matrix:
@@ -61,8 +61,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Uninstall tauri locally
-        run: cd apps/tauri-client && npm un @tauri-apps/cli
       - name: install Rust stable
         uses: actions-rs/toolchain@v1
         with:
