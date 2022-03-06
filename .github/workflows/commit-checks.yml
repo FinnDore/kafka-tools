@@ -10,18 +10,15 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v2
-        name: Checkout [lint]
+        name: Checkout [commit-checks]
         with:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: "14"
-      - run: |
-          echo "BASE: ${{ env.NX_BASE }}"
-          echo "HEAD: ${{ env.NX_HEAD }}"
-      - run: npm ci
+          node-version: 16
+      - run: npm install
       - run: npx nx-cloud start-ci-run
       - run: npx nx affected --target=build
       - run: npx nx affected --target=test --parallel
@@ -29,8 +26,8 @@ jobs:
       - run: npx nx-cloud stop-all-agents
 
   agents:
-    runs-on: ubuntu-latest
-    name: Agent 1
+    runs-on: windows-2022
+    name: build test lint
     timeout-minutes: 60
     strategy:
       matrix:
@@ -40,6 +37,39 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14"
-      - run: npm install
+      - run: npm ci
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
+
+  build-tauri:
+    strategy:
+      fail-fast: false
+
+      matrix:
+        platform: [macos-latest, ubuntu-latest, windows-latest]
+    env:
+      NX_CLOUD_DISTRIBUTED_EXECUTION: false
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: install Rust stable
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: install webkit2gtk (ubuntu only)
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webkit2gtk-4.0
+      - name: npm install
+        run: npm install
+      - name: build kafka-tools
+        run: npx nx build kafka-tools
+      - name: build tauri-client
+        run: npx nx build tauri-client

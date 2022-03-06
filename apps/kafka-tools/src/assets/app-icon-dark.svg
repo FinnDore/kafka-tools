@@ -1,29 +1,26 @@
-<svg width="211" height="237" viewBox="0 0 211 237" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_3_74)">
-        <rect x="68" width="21" height="237" fill="white" />
-        <rect x="68" width="21" height="237" fill="#4200FF" />
-        <mask id="mask0_3_74" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-72" y="54" width="135" height="183">
-            <rect x="-72" y="54" width="135" height="183" fill="black" />
-            <rect x="-72" y="54" width="135" height="183" fill="black" />
-        </mask>
-        <g mask="url(#mask0_3_74)">
-            <rect x="-11" y="43" width="23" height="116" transform="rotate(-45 -11 43)" fill="white" />
-            <rect x="-11" y="43" width="23" height="116" transform="rotate(-45 -11 43)" fill="white" />
-        </g>
-        <mask id="mask1_3_74" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="94" y="0" width="135" height="237">
-            <rect x="94" width="135" height="237" fill="black" />
-            <rect x="94" width="135" height="237" fill="black" />
-        </mask>
-        <g mask="url(#mask1_3_74)">
-            <rect x="71" y="129" width="23" height="179" transform="rotate(-45 71 129)" fill="white" />
-            <rect x="71" y="129" width="23" height="179" transform="rotate(-45 71 129)" fill="white" />
-            <rect x="209" y="-31" width="23" height="253" transform="rotate(45 209 -31)" fill="white" />
-            <rect x="209" y="-31" width="23" height="253" transform="rotate(45 209 -31)" fill="white" />
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="none" viewBox="0 0 128 128">
+  <path fill="#fff" d="M49 19h8v91h-8z"/>
+  <path fill="#4200FF" d="M49 19h8v91h-8z"/>
+  <mask id="a" width="24" height="70" x="23" y="40" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+    <path fill="#000" d="M23 40h24v70H23z"/>
+    <path fill="#000" d="M23 40h24v70H23z"/>
+  </mask>
+  <g mask="url(#a)">
+    <path fill="#fff" d="M18.797 35.51l6.214-6.244 31.34 31.495-6.214 6.245z"/>
+    <path fill="#fff" d="M18.797 35.51l6.214-6.244 31.34 31.495-6.214 6.245z"/>
+  </g>
+  <g>
+    <mask id="b" width="45" height="91" x="59" y="19" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+      <path fill="#000" d="M59 19h45v91H59z"/>
+      <path fill="#000" d="M59 19h45v91H59z"/>
+    </mask>
+    <g mask="url(#b)">
+      <path fill="#fff" d="M50.127 68.532l6.215-6.245 48.36 48.6-6.214 6.244z"/>
+      <path fill="#fff" d="M50.127 68.532l6.215-6.245 48.36 48.6-6.214 6.244z"/>
+      <g>
+        <path fill="#fff" d="M102.854 7.097l6.214 6.245-68.353 68.691-6.214-6.245z"/>
+        <path fill="#fff" d="M102.854 7.097l6.214 6.245-68.353 68.691-6.214-6.245z"/>
+      </g>
     </g>
-    <defs>
-        <clipPath id="clip0_3_74">
-            <rect width="211" height="237" fill="white" />
-        </clipPath>
-    </defs>
+  </g>
 </svg>
