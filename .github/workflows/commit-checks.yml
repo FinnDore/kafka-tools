@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-2022
     if: ${{ github.event_name == 'push' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         name: Checkout [commit-checks]
         with:
           fetch-depth: 0
@@ -33,7 +33,7 @@ jobs:
       matrix:
         agent: [1, 2, 3]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v1
         with:
           node-version: "14"
@@ -53,7 +53,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: setup node
         uses: actions/setup-node@v1
         with:
