@@ -22,7 +22,7 @@
         "@angular/router": "13.2.5",
         "@nrwl/angular": "13.8.4",
         "@nrwl/js": "13.8.4",
-        "rxjs": "7.4.0",
+        "rxjs": "7.5.4",
         "tslib": "2.3.1",
         "zone.js": "0.11.5"
     },
