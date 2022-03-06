@@ -8,8 +8,11 @@
             "options": {
                 "commands": [
                     "cd ./apps/tauri-client && npm i && npm run tauri build"
-                ]
-            }
+                ],
+                "outputPath": "apps/tauri-client/src-tauri/target/release"
+            },
+
+            "runtimeCacheInputs": ["node log-os.js"]
         },
         "serve": {
             "executor": "@nrwl/workspace:run-commands",
