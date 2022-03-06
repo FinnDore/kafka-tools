@@ -61,6 +61,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
+      - name: Uninstall tauri locally
+        run: cd apps/tauri-client && npm un @tauri-apps/cli
       - name: install Rust stable
         uses: actions-rs/toolchain@v1
         with:

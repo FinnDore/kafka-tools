@@ -8,8 +8,7 @@
             "options": {
                 "commands": [
                     "cd ./apps/tauri-client && npm i && npm run tauri build"
-                ],
-                "outputPath": "apps/tauri-client/src-tauri/target"
+                ]
             }
         },
         "serve": {
