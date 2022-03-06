@@ -26,7 +26,7 @@ jobs:
       - run: npx nx-cloud stop-all-agents
 
   agents:
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
     name: build test lint
     timeout-minutes: 60
     strategy:
@@ -37,11 +37,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14"
-      - name: install webkit2gtk (ubuntu only)
-        if: matrix.platform == 'ubuntu-latest'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y webkit2gtk-4.0
       - run: npm ci
       - name: Start Nx Agent ${{ matrix.agent }}
         run: npx nx-cloud start-agent
