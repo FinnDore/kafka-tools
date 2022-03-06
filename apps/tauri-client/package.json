@@ -1,6 +1,6 @@
 {
     "name": "@kafka-client/tauri-client",
-    "version": "0.1.2",
+    "version": "0.1.4",
     "scripts": {
         "tauri": "tauri"
     },
