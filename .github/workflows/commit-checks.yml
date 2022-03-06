@@ -52,6 +52,8 @@ jobs:
 
       matrix:
         platform: [macos-latest, ubuntu-latest, windows-latest]
+    env:
+      NX_CLOUD_DISTRIBUTED_EXECUTION: false
 
     runs-on: ${{ matrix.platform }}
 
