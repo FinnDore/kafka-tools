@@ -65,14 +65,14 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+      - name: Sets up and uses rust cache
+        uses: Swatinem/rust-cache@v1
       - name: install webkit2gtk (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
         run: |
           sudo apt-get update
           sudo apt-get install -y webkit2gtk-4.0
-      - name: build kafka-tools
-        run: |
-          npm ci
-          npx nx build kafka-tools
+      - name: npm ci
+        run: npm ci
       - name: build tauri-client
         run: npx nx build tauri-client
