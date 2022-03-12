@@ -1,11 +1,12 @@
-<div class="container">
-    <button mat-stroked-button>
-        <fa-icon [icon]="faSquare"></fa-icon>
-    </button>
-    <button mat-stroked-button>
+<div class="container" data-tauri-drag-region>
+    <button mat-stroked-button (click)="minimize()">
         <fa-icon [icon]="faMinus"></fa-icon>
     </button>
-    <button mat-stroked-button>
+    <button mat-stroked-button class="min-max" (click)="maximizeOrMinimize()">
+        <fa-icon [icon]="faSquare"></fa-icon>
+    </button>
+
+    <button mat-stroked-button class="close" (click)="(close)">
         <fa-icon [icon]="faXmark"></fa-icon>
     </button>
 </div>

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { appWindow } from '@tauri-apps/api/window';
-import { faMinus, faSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faSquare } from '@fortawesome/free-regular-svg-icons';
 @Component({
     selector: 'kafka-tools-window-controls',
     templateUrl: './window-controls.component.html',
@@ -18,7 +19,7 @@ export class WindowControlsComponent {
         if (await appWindow.isMaximized()) {
             appWindow.unmaximize();
         } else {
-            this.minimize();
+            appWindow.maximize();
         }
     }
 
@@ -26,7 +27,7 @@ export class WindowControlsComponent {
      * Minimizes the window
      */
     minimize(): void {
-        appWindow.maximize();
+        appWindow.minimize();
     }
 
     /**
