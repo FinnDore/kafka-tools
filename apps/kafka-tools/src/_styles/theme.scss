@@ -6,6 +6,9 @@
 
 @use '@angular/material' as mat;
 
+@use 'sass:map';
+@import '~@angular/material/theming';
+
 // Fonts
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
@@ -192,6 +195,7 @@ $mat-accent: (
             darker: $light-primary-text,
         ),
 );
+
 $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
 
 body {
@@ -202,6 +206,7 @@ body {
     --text-warn-lighter-color: #{$dark-primary-text};
     --text-warn-darker-color: #{$light-primary-text};
 }
+
 $mat-warn: (
     main: #ff0032,
     lighter: #ffb3c2,
@@ -215,8 +220,9 @@ $mat-warn: (
             darker: $light-primary-text,
         ),
 );
+
 $theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
-$theme: (
+$darkTheme: (
     primary: $theme-primary,
     accent: $theme-accent,
     warn: $theme-warn,
@@ -224,7 +230,8 @@ $theme: (
     foreground: $mat-dark-theme-foreground,
     background: $mat-dark-theme-background,
 );
-$altTheme: (
+
+$lightTheme: (
     primary: $theme-primary,
     accent: $theme-accent,
     warn: $theme-warn,
@@ -233,13 +240,12 @@ $altTheme: (
     background: $mat-light-theme-background,
 );
 
-.dark-theme {
-    @include mat.all-component-themes($theme);
-}
-
 // Theme Init
-.light-theme {
-    @include mat.all-component-themes($altTheme);
+::ng-deep .light-theme {
+    @include mat.all-component-themes($lightTheme);
+}
+::ng-deep .dark-theme {
+    @include mat.all-component-themes($darkTheme);
 }
 
 // Specific component overrides, pieces that are not in line with the general theming
@@ -264,5 +270,19 @@ $altTheme: (
     font-family: 'Material Icons', 'Material Icons';
     .mat-badge-content {
         font-family: 'Roboto';
+    }
+}
+
+@mixin theme($property: null, $key: null, $hue: 100) {
+    // Get the required color palette from the color-config.
+    ::ng-deep .light-theme & {
+        $color-config: mat.get-color-config($lightTheme);
+        $color-palette: map.get($color-config, $key);
+        #{$property}: mat.get-color-from-palette($color-palette, $hue);
+    }
+    ::ng-deep .dark-theme & {
+        $color-config: mat.get-color-config($darkTheme);
+        $color-palette: map.get($color-config, $key);
+        #{$property}: mat.get-color-from-palette($color-palette, $hue);
     }
 }
