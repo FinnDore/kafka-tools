@@ -20,7 +20,8 @@
                 ],
                 "styles": [
                     "apps/kafka-tools/src/styles.scss",
-                    "apps/kafka-tools/src/_styles/css-reset.scss"
+                    "apps/kafka-tools/src/_styles/css-reset.scss",
+                    "apps/kafka-tools/src/_styles/theme.scss"
                 ],
                 "scripts": []
             },

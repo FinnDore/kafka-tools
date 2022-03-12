@@ -1,8 +1,9 @@
-:host {
+:host > * {
     height: 100%;
     width: 100%;
     display: flex;
-    background: black;
+    align-items: center;
+    justify-content: center;
 }
 
 img {
