@@ -10,9 +10,13 @@ const routes: Routes = [
                 m => m.ProducerModule
             ),
     },
-]; // sets up routes constant where you define your routes
+    {
+        path: '',
+        redirectTo: AppRoutes.Producer,
+        pathMatch: 'full',
+    },
+];
 
-// configures NgModule imports and exports
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],

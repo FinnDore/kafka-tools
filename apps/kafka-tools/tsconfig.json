@@ -22,7 +22,8 @@
         "noFallthroughCasesInSwitch": true,
 
         "paths": {
-            "@kafka-tools/features/*": ["apps/kafka-tools/src/app/features/*"]
+            "@kafka-tools/features/*": ["apps/kafka-tools/src/app/features/*"],
+            "@kafka-tools/modules/*": ["apps/kafka-tools/src/app/modules/*"]
         }
     },
     "angularCompilerOptions": {
