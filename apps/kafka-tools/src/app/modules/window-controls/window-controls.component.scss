@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+}
+
+:host {
+    width: 100%;
+}
+
+:host ::ng-deep button {
+    min-width: 0;
+    margin: 0 0.5rem;
+}

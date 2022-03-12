@@ -34,13 +34,13 @@
         {
             "files": ["*.ts", "*.tsx"],
             "rules": {
+                "@typescript-eslint/explicit-function-return-type": [2],
                 "valid-jsdoc": [
                     2,
                     {
-                        "requireReturnType": true,
                         "requireParamDescription": true,
                         "requireParamType": false,
-                        "requireReturn": true,
+                        "requireReturn": false,
                         "preferType": {
                             "String": "string",
                             "object": "object",
@@ -57,7 +57,7 @@
                     {
                         "require": {
                             "FunctionDeclaration": true,
-                            "MethodDefinition": false,
+                            "MethodDefinition": true,
                             "ClassDeclaration": false
                         }
                     }
