@@ -273,7 +273,7 @@ $lightTheme: (
     }
 }
 
-@mixin theme($property: null, $key: null, $hue: 100) {
+@mixin theme($property: null, $key: null, $hue: darker) {
     // Get the required color palette from the color-config.
     ::ng-deep .light-theme & {
         $color-config: mat.get-color-config($lightTheme);
