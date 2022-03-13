@@ -1,0 +1,23 @@
+@use 'sass:map';
+
+@function apply-alpha($base-color, $num) {
+    @return rgba($base-color, $num / 100);
+}
+
+@function get-lightens($base-color) {
+    $lighten-map: ();
+
+    @for $i from 0 through 50 {
+        $lighten-map: map.set($lighten-map, $i, lighten($base-color, $i));
+    }
+    @return $lighten-map;
+}
+
+@function get-darkens($base-color) {
+    $darkens-map: ();
+
+    @for $i from 0 through 50 {
+        $darkens-map: map.set($darkens-map, $i, darken($base-color, $i));
+    }
+    @return $darkens-map;
+}
