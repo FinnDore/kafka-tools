@@ -1,32 +1,20 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-@import '~@angular/material/theming';
 @import '~/src/_styles/theme.scss';
 
 .container {
     width: 100%;
 }
 
-:host ::ng-deep button {
-    min-width: 0;
-    margin: 0 0.5rem;
-}
-
-// $palette: map-get($theme, background-color);
-
-// Get the color config from the theme.
-// $color-config: mat.get-color-config($palette);
-
-// Get the primary color palette from the color-config.
-// $warn-palette: map.get($color-config, 'primary');
-// :host ::ng-deep mat-stroked-button {
-
-.container {
+:host .container {
     display: flex;
     justify-content: flex-end;
     width: calc(100% - 1rem);
     padding: 0.5rem;
     @include theme(background, accent, lighten);
+
+    button {
+        min-width: 0;
+        margin: 0 0.25rem;
+    }
 }
 
 .close:hover {
