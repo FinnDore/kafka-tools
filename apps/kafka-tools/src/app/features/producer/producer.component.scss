@@ -1,99 +1,59 @@
 @use 'sass:map';
 @import '~/src/_styles/themes/dark-theme.scss';
+@import '~/src/_styles/themes/theme-functions.scss';
 
 :host {
     display: flex !important;
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column-reverse;
 }
 
-.pallette {
-    display: flex;
+$colors: (
+    1: #4200ff,
+    4: crimson,
+    5: #ff3c22,
+    6: #ffee00,
+    7: #00ff55,
+    8: #929292,
+);
 
-    .color,
-    .display-color {
-        width: 0.5rem;
-        height: 5rem;
-    }
+@each $index, $color in $colors {
+    .pallette:nth-child(#{$index}) {
+        display: flex;
+        margin: 1rem 0;
 
-    .display-color {
-        margin-right: 3rem;
-        width: 5rem;
-        background: $dark-bg;
-        box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-            12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-            22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-            41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-            100px 100px 80px rgba(0, 0, 0, 0.07);
-    }
-
-    @for $i from 0 through 50 {
-        .color:nth-child(#{$i}) {
-            background: map.get($dark-bg-lightens, 50 -$i);
+        .color,
+        .display-color {
+            width: 0.35rem;
+            height: 5rem;
         }
-    }
 
-    @for $i from 0 through 50 {
-        .color:nth-child(#{$i + 51}) {
-            background: map.get($dark-bg-darkens, $i);
+        .display-color {
+            margin-right: 3rem;
+            width: 5rem;
+            background: $color;
+            box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+                6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+                12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+                22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+                41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+                100px 100px 80px rgba(0, 0, 0, 0.07);
+        }
+
+        $color-lightens: get-lightens($color);
+        $color-darkens: get-darkens($color);
+
+        @for $i from 0 through 100 {
+            .color:nth-child(#{$i}) {
+                background: map.get($color-lightens, 100 -$i);
+            }
+        }
+
+        @for $i from 0 through 100 {
+            .color:nth-child(#{$i + 100}) {
+                background: map.get($color-darkens, 100 - $i);
+            }
         }
     }
 }
-// div:nth-child(2) {
-//     background: $dark-bg-lighten-40;
-// }
-// div:nth-child(3) {
-//     background: $dark-bg-lighten-35;
-// }
-// div:nth-child(4) {
-//     background: $dark-bg-lighten-30;
-// }
-// div:nth-child(5) {
-//     background: $dark-bg-lighten-25;
-// }
-// div:nth-child(6) {
-//     background: $dark-bg-lighten-20;
-// }
-// div:nth-child(7) {
-//     background: $dark-bg-lighten-15;
-// }
-// div:nth-child(8) {
-//     background: $dark-bg-lighten-10;
-// }
-// div:nth-child(9) {
-//     background: $dark-bg-lighten-05;
-// }
-
-// div:nth-child(10) {
-//     background: $dark-bg-darken-05;
-// }
-// div:nth-child(11) {
-//     background: $dark-bg-darken-10;
-// }
-// div:nth-child(12) {
-//     background: $dark-bg-darken-15;
-// }
-// div:nth-child(13) {
-//     background: $dark-bg-darken-20;
-// }
-// div:nth-child(14) {
-//     background: $dark-bg-darken-25;
-// }
-// div:nth-child(15) {
-//     background: $dark-bg-darken-30;
-// }
-// div:nth-child(16) {
-//     background: $dark-bg-darken-35;
-// }
-// div:nth-child(17) {
-//     background: $dark-bg-darken-40;
-// }
-// div:nth-child(18) {
-//     background: $dark-bg-darken-45;
-// }
-// div:nth-child(19) {
-//     background: $dark-bg-darken-50;
-// }

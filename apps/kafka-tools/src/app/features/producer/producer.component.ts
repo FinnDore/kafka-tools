@@ -7,5 +7,5 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProducerComponent {
-    readonly paletteArray = new Array(100);
+    readonly paletteArray = new Array(200);
 }
