@@ -1,7 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { appWindow } from '@tauri-apps/api/window';
-import { faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Component } from '@angular/core';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
+import { faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { appWindow } from '@tauri-apps/api/window';
 @Component({
     selector: 'kafka-tools-window-controls',
     templateUrl: './window-controls.component.html',

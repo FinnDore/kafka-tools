@@ -1,4 +1,9 @@
-<div class="dark-theme mat-app-background content">
-    <kafka-tools-window-controls></kafka-tools-window-controls>
+<div
+    class="mat-app-background content"
+    [ngClass]="dark ? 'dark-theme' : 'light-theme'"
+>
+    <kafka-tools-window-controls
+        (click)="dark = !dark"
+    ></kafka-tools-window-controls>
     <router-outlet></router-outlet>
 </div>

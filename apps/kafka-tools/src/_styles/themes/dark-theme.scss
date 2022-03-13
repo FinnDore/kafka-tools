@@ -1,205 +1,264 @@
 @use '@angular/material' as mat;
-
 @use 'sass:map';
+
 @import '~@angular/material/theming';
 @import '~/src/_styles/themes/theme-functions.scss';
+@import '~/src/_styles/themes/font-config.scss';
 
-/** -----------------------------------  Variables  ----------------------------------------- */
+/** -----------------------------------  Theme ----------------------------------------- */
 
-$dark-text: #ffffff;
-$dark-primary-text: $dark-text;
-$dark-accent-text: rgba($dark-primary-text, 0.7);
-$dark-disabled-text: rgba($dark-primary-text, 0.5);
-$dark-dividers: rgba($dark-primary-text, 0.12);
-$dark-focused: rgba($dark-primary-text, 0.12);
+$theme-colors: (
+    'purple': #4200ff,
+    'blue': #0004ff,
+    'red': crimson,
+    'orange': #ff3c22,
+    'turquoise': #00ff9d,
+    'green': #7bff00,
+    'yellow': #ffee00,
+    'grey': #929292,
+    'black': black,
+    'white': white,
+);
 
 $dark-bg: #0e0e0e;
 
-$dark-bh-get-alpha: alpha($dark-bg);
-// $dark-bg-alpha-05: $dark-bh-get-alpha(5);
-// $dark-bg-alpha-05: rgba($dark-background, 0.05);
-$dark-bg-alpha-10: rgba($dark-bg, 0.1);
-$dark-bg-alpha-15: rgba($dark-bg, 0.15);
-$dark-bg-alpha-20: rgba($dark-bg, 0.2);
-$dark-bg-alpha-25: rgba($dark-bg, 0.25);
-$dark-bg-alpha-30: rgba($dark-bg, 0.3);
-$dark-bg-alpha-35: rgba($dark-bg, 0.35);
-$dark-bg-alpha-40: rgba($dark-bg, 0.4);
-$dark-bg-alpha-45: rgba($dark-bg, 0.45);
-$dark-bg-alpha-50: rgba($dark-bg, 0.5);
-$dark-bg-alpha-55: rgba($dark-bg, 0.55);
-$dark-bg-alpha-60: rgba($dark-bg, 0.6);
-$dark-bg-alpha-65: rgba($dark-bg, 0.65);
-$dark-bg-alpha-70: rgba($dark-bg, 0.7);
-$dark-bg-alpha-75: rgba($dark-bg, 0.75);
-$dark-bg-alpha-80: rgba($dark-bg, 0.85);
-$dark-bg-alpha-85: rgba($dark-bg, 0.85);
-$dark-bg-alpha-90: rgba($dark-bg, 0.9);
-$dark-bg-alpha-95: rgba($dark-bg, 0.95);
-$dark-bg-alpha-100: rgba($dark-bg, 1);
+@function theme-color($color) {
+    @return map.get($theme-colors, $color);
+}
 
-$dark-bg-lightens: get-lightens($dark-bg);
-$dark-bg-darkens: get-darkens($dark-bg);
+$theme-color-lightens-darkens: (
+    'purple': (
+        'l': get-lightens(theme-color('purple')),
+        'd': get-darkens(theme-color('purple')),
+    ),
+    'blue': (
+        'l': get-lightens(theme-color('blue')),
+        'd': get-darkens(theme-color('blue')),
+    ),
+    'red': (
+        'l': get-lightens(theme-color('red')),
+        'd': get-darkens(theme-color('red')),
+    ),
+    'orange': (
+        'l': get-lightens(theme-color('orange')),
+        'd': get-darkens(theme-color('orange')),
+    ),
+    'turquoise': (
+        'l': get-lightens(theme-color('turquoise')),
+        'd': get-darkens(theme-color('turquoise')),
+    ),
+    'green': (
+        'l': get-lightens(theme-color('green')),
+        'd': get-darkens(theme-color('green')),
+    ),
+    'yellow': (
+        'l': get-lightens(theme-color('yellow')),
+        'd': get-darkens(theme-color('yellow')),
+    ),
+    'grey': (
+        'l': get-lightens(theme-color('grey')),
+        'd': get-darkens(theme-color('grey')),
+    ),
+    'black': (
+        'l': get-lightens(theme-color('black')),
+        'd': get-darkens(theme-color('black')),
+    ),
+    'white': (
+        'l': get-lightens(theme-color('white')),
+        'd': get-darkens(theme-color('white')),
+    ),
+);
 
-// $mat-dark-theme-foreground: (
-//     base: $light-text,
-//     divider: $light-dividers,
-//     dividers: $light-dividers,
-//     disabled: $light-disabled-text,
-//     disabled-button: rgba($light-text, 0.3),
-//     disabled-text: $light-disabled-text,
-//     elevation: $dark-background,
-//     hint-text: $light-disabled-text,
-//     secondary-text: $light-accent-text,
-//     accent-text: $light-accent-text,
-//     icon: $light-text,
-//     icons: $light-text,
-//     text: $light-text,
-//     slider-min: $light-text,
-//     slider-off: rgba($light-text, 0.3),
-//     slider-off-active: rgba($light-text, 0.3),
-// );
+@function get-l-d($color, $ld) {
+    @return map.get(map.get($theme-color-lightens-darkens, $color), $ld);
+}
 
-// // Background config
-// // Light bg
-// $light-background: #fafafa;
-// $light-bg-darker-5: darken($light-background, 5%);
-// $light-bg-darker-10: darken($light-background, 10%);
-// $light-bg-darker-20: darken($light-background, 20%);
-// $light-bg-darker-30: darken($light-background, 30%);
-// $light-bg-lighter-5: lighten($light-background, 5%);
+$theme-primary: map.get($theme-colors, 'purple');
+$theme-accent: map.get($theme-colors, 'black');
+$theme-warn: map.get($theme-colors, 'red');
 
-// $dark-bg-tooltip: lighten($dark-background, 20%);
-// $dark-bg-alpha-4: rgba($dark-background, 0.04);
-// $dark-bg-alpha-12: rgba($dark-background, 0.12);
+$theme-success: map.get($theme-colors, 'turquoise');
+$theme-attention: map.get($theme-colors, 'orange');
 
-// $mat-light-theme-background: (
-//     background: $light-background,
-//     status-bar: $light-bg-darker-20,
-//     app-bar: $light-bg-darker-5,
-//     hover: $dark-bg-alpha-4,
-//     card: $light-bg-lighter-5,
-//     dialog: $light-bg-lighter-5,
-//     tooltip: $dark-bg-tooltip,
-//     disabled-button: $dark-bg-alpha-12,
-//     raised-button: $light-bg-lighter-5,
-//     focused-button: $dark-focused,
-//     selected-button: $light-bg-darker-20,
-//     selected-disabled-button: $light-bg-darker-30,
-//     disabled-button-toggle: $light-bg-darker-10,
-//     unselected-chip: $light-bg-darker-10,
-//     disabled-list-option: $light-bg-darker-10,
-// );
+/** -----------------------------------  A material Theme ----------------------------------------- */
 
-// // Dark bg
-// $dark-background: #0e0e0e;
-// $dark-bg-lighter-5: lighten($dark-background, 5%);
-// $dark-bg-lighter-10: lighten($dark-background, 10%);
-// $dark-bg-lighter-20: lighten($dark-background, 20%);
-// $dark-bg-lighter-30: lighten($dark-background, 30%);
-// $light-bg-alpha-4: rgba(#fafafa, 0.04);
-// $light-bg-alpha-12: rgba(#fafafa, 0.12);
+// Light Theme Text
+$dark-text: theme-color('black');
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
 
-// // Background palette for dark themes.
-// $mat-dark-theme-background: (
-//     background: $dark-background,
-//     status-bar: $dark-bg-lighter-20,
-//     app-bar: $dark-bg-lighter-5,
-//     hover: $light-bg-alpha-4,
-//     card: $dark-bg-lighter-5,
-//     dialog: $dark-bg-lighter-5,
-//     tooltip: $dark-bg-lighter-20,
-//     disabled-button: $light-bg-alpha-12,
-//     raised-button: $dark-bg-lighter-5,
-//     focused-button: $light-focused,
-//     selected-button: $dark-bg-lighter-20,
-//     selected-disabled-button: $dark-bg-lighter-30,
-//     disabled-button-toggle: $dark-bg-lighter-10,
-//     unselected-chip: $dark-bg-lighter-20,
-//     disabled-list-option: $dark-bg-lighter-10,
-// );
+$mat-light-theme-foreground: (
+    base: theme-color('black'),
+    divider: $dark-dividers,
+    dividers: $dark-dividers,
+    disabled: $dark-disabled-text,
+    disabled-button: rgba($dark-text, 0.26),
+    disabled-text: $dark-disabled-text,
+    elevation: theme-color('black'),
+    secondary-text: $dark-accent-text,
+    hint-text: $dark-disabled-text,
+    accent-text: $dark-accent-text,
+    icon: $dark-accent-text,
+    icons: $dark-accent-text,
+    text: $dark-primary-text,
+    slider-min: $dark-primary-text,
+    slider-off: rgba($dark-text, 0.26),
+    slider-off-active: $dark-disabled-text,
+);
 
-// // Compute font config
-// @include mat.core($fontConfig);
+// Dark Theme text
+$light-text: theme-color('white');
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
 
-// // Theme Config
+$mat-dark-theme-foreground: (
+    base: $light-text,
+    divider: $light-dividers,
+    dividers: $light-dividers,
+    disabled: $light-disabled-text,
+    disabled-button: rgba($light-text, 0.3),
+    disabled-text: $light-disabled-text,
+    elevation: theme-color('black'),
+    hint-text: $light-disabled-text,
+    secondary-text: $light-accent-text,
+    accent-text: $light-accent-text,
+    icon: $light-text,
+    icons: $light-text,
+    text: $light-text,
+    slider-min: $light-text,
+    slider-off: rgba($light-text, 0.3),
+    slider-off-active: rgba($light-text, 0.3),
+);
 
-// body {
-//     --primary-color: #4200ff;
-//     --primary-lighter-color: #c6b3ff;
-//     --primary-darker-color: #2b00ff;
-//     --text-primary-color: #{$light-primary-text};
-//     --text-primary-lighter-color: #{$dark-primary-text};
-//     --text-primary-darker-color: #{$light-primary-text};
-// }
-// $mat-primary: (
-//     main: #4200ff,
-//     lighter: #c6b3ff,
-//     darker: #2b00ff,
-//     200: #4200ff,
-//     // For slide toggle,
-//     contrast:
-//         (
-//             main: $light-primary-text,
-//             lighter: $dark-primary-text,
-//             darker: $light-primary-text,
-//         ),
-// );
-// $theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
+// Background config
+// Light bg
+$light-background: theme-color('white');
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
+$light-bg-lighter-5: lighten($light-background, 5%);
+$dark-bg-tooltip: lighten($dark-bg, 20%);
+$dark-bg-alpha-4: rgba($dark-bg, 0.04);
+$dark-bg-alpha-12: rgba($dark-bg, 0.12);
 
-// body {
-//     --accent-color: #000000;
-//     --accent-lighter-color: #b3b3b3;
-//     --accent-darker-color: #000000;
-//     --text-accent-color: #{$light-primary-text};
-//     --text-accent-lighter-color: #{$dark-primary-text};
-//     --text-accent-darker-color: #{$light-primary-text};
-// }
-// $mat-accent: (
-//     main: #000000,
-//     lighter: #b3b3b3,
-//     darker: #000000,
-//     200: #000000,
-//     // For slide toggle,
-//     contrast:
-//         (
-//             main: $light-primary-text,
-//             lighter: $dark-primary-text,
-//             darker: $light-primary-text,
-//         ),
-// );
+$mat-light-theme-background: (
+    background: $light-background,
+    status-bar: $light-bg-darker-20,
+    app-bar: $light-bg-darker-5,
+    hover: $dark-bg-alpha-4,
+    card: $light-bg-lighter-5,
+    dialog: $light-bg-lighter-5,
+    tooltip: $dark-bg-tooltip,
+    disabled-button: $dark-bg-alpha-12,
+    raised-button: $light-bg-lighter-5,
+    focused-button: $dark-focused,
+    selected-button: $light-bg-darker-20,
+    selected-disabled-button: $light-bg-darker-30,
+    disabled-button-toggle: $light-bg-darker-10,
+    unselected-chip: $light-bg-darker-10,
+    disabled-list-option: $light-bg-darker-10,
+);
 
-// $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
+// Dark bg
+$dark-background: $dark-bg;
+$dark-bg-lighter-5: lighten($dark-background, 5%);
+$dark-bg-lighter-10: lighten($dark-background, 10%);
+$dark-bg-lighter-20: lighten($dark-background, 20%);
+$dark-bg-lighter-30: lighten($dark-background, 30%);
+$light-bg-alpha-4: rgba(theme-color('white'), 0.04);
+$light-bg-alpha-12: rgba(theme-color('white'), 0.12);
 
-// body {
-//     --warn-color: #ff0032;
-//     --warn-lighter-color: #ffb3c2;
-//     --warn-darker-color: #a8071a;
-//     --text-warn-color: #{$light-primary-text};
-//     --text-warn-lighter-color: #{$dark-primary-text};
-//     --text-warn-darker-color: #{$light-primary-text};
-// }
+// Background palette for dark themes.
+$mat-dark-theme-background: (
+    background: $dark-background,
+    status-bar: $dark-bg-lighter-20,
+    app-bar: $dark-bg-lighter-5,
+    hover: $light-bg-alpha-4,
+    card: $dark-bg-lighter-5,
+    dialog: $dark-bg-lighter-5,
+    tooltip: $dark-bg-lighter-20,
+    disabled-button: $light-bg-alpha-12,
+    raised-button: $dark-bg-lighter-5,
+    focused-button: $light-focused,
+    selected-button: $dark-bg-lighter-20,
+    selected-disabled-button: $dark-bg-lighter-30,
+    disabled-button-toggle: $dark-bg-lighter-10,
+    unselected-chip: $dark-bg-lighter-20,
+    disabled-list-option: $dark-bg-lighter-10,
+);
 
-// $mat-warn: (
-//     main: #ff0032,
-//     lighter: #ffb3c2,
-//     darker: #a8071a,
-//     200: #ff0032,
-//     // For slide toggle,
-//     contrast:
-//         (
-//             main: $light-primary-text,
-//             lighter: $dark-primary-text,
-//             darker: $light-primary-text,
-//         ),
-// );
+// Compute font config
+@include mat.core($fontConfig);
 
-// $theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
-// $darkTheme: (
-//     primary: $theme-primary,
-//     accent: $theme-accent,
-//     warn: $theme-warn,
-//     is-dark: true,
-//     foreground: $mat-dark-theme-foreground,
-//     background: $mat-dark-theme-background,
-// );
+// Theme Config
+
+$mat-primary: (
+    main: #4200ff,
+    lighter: #c6b3ff,
+    darker: #2b00ff,
+    200: #4200ff,
+    // For slide toggle,
+    contrast:
+        (
+            main: $light-primary-text,
+            lighter: $dark-primary-text,
+            darker: $light-primary-text,
+        ),
+);
+$theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
+
+$mat-accent: (
+    main: #000000,
+    lighter: #b3b3b3,
+    darker: #000000,
+    200: #000000,
+    // For slide toggle,
+    contrast:
+        (
+            main: $light-primary-text,
+            lighter: $dark-primary-text,
+            darker: $light-primary-text,
+        ),
+);
+
+$theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
+
+$mat-warn: (
+    main: #ff0032,
+    lighter: #ffb3c2,
+    darker: #a8071a,
+    200: #ff0032,
+    // For slide toggle,
+    contrast:
+        (
+            main: $light-primary-text,
+            lighter: $dark-primary-text,
+            darker: $light-primary-text,
+        ),
+);
+
+$theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
+$darkTheme: (
+    primary: $theme-primary,
+    accent: $theme-accent,
+    warn: $theme-warn,
+    is-dark: true,
+    foreground: $mat-dark-theme-foreground,
+    background: $mat-dark-theme-background,
+);
+
+$lightTheme: (
+    primary: $theme-primary,
+    accent: $theme-accent,
+    warn: $theme-warn,
+    is-dark: false,
+    foreground: $mat-light-theme-foreground,
+    background: $mat-light-theme-background,
+);
