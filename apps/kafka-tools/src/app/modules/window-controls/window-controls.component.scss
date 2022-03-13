@@ -7,9 +7,28 @@
 :host .container {
     display: flex;
     justify-content: flex-end;
-    width: calc(100% - 1rem);
+    width: calc(100% - 1.5rem);
     padding: 0.5rem;
+    padding-left: 1rem;
     @include theme(background, accent, lighten);
+
+    .left-side {
+        display: flex;
+        margin-right: auto;
+
+        img {
+            margin: auto;
+            height: 1.5rem;
+        }
+
+        .app-name {
+            font-size: 1.4rem;
+            line-height: 1rem;
+            font-variant: all-small-caps;
+            margin: auto;
+            margin-left: 0.25rem;
+        }
+    }
 
     button {
         min-width: 0;
@@ -17,7 +36,7 @@
     }
 }
 
-.close:hover {
+::ng-deep .close:hover {
     transition: border-colo 0.25s ease-out, background 0.25s ease-out;
-    @include theme(background, warn);
+    @include theme(background, warn, darker);
 }
