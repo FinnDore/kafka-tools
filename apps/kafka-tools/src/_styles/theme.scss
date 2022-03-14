@@ -7,8 +7,8 @@
 @use '@angular/material' as mat;
 
 @use 'sass:map';
-@import '~/src/_styles/themes/create-theme.function.scss';
 @import '~@angular/material/theming';
+@import '~/src/_styles/functions/create-theme.function.scss';
 @import '~/src/_styles/themes/dark-theme.scss';
 @import '~/src/_styles/themes/light-theme.scss';
 // Foreground Elements
@@ -33,6 +33,7 @@
         display: block;
     }
 }
+
 * {
     transition: background-color 0.25s ease-out;
 }
@@ -57,13 +58,10 @@
 @mixin theme($property: null, $key: null, $hue: darker) {
     // Get the required color palette from the color-config.
     ::ng-deep .light-theme & {
-        $color-config: mat.get-color-config($light-theme);
-        $color-palette: map.get($color-config, $key);
-        #{$property}: mat.get-color-from-palette($color-palette, $hue);
+        #{$property}: map.get($light-theme-colors, $key);
     }
+
     ::ng-deep .dark-theme & {
-        $color-config: mat.get-color-config($dark-theme);
-        $color-palette: map.get($color-config, $key);
-        #{$property}: mat.get-color-from-palette($color-palette, $hue);
+        #{$property}: map.get($dark-theme-colors, $key);
     }
 }

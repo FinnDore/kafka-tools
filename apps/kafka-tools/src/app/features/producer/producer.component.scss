@@ -1,6 +1,7 @@
 @use 'sass:map';
-@import '~/src/_styles/themes/dark-theme.scss';
-@import '~/src/_styles/themes/theme-functions.scss';
+@import '~/src/_styles/theme.scss';
+@import '~/src/_styles/functions/get-lightens.function.scss';
+@import '~/src/_styles/functions/get-darkens.function.scss';
 
 :host {
     display: flex !important;
@@ -10,12 +11,12 @@
 }
 
 $colors: (
-    1: #4200ff,
-    4: crimson,
-    5: #ff3c22,
-    6: #ffee00,
-    7: #00ff55,
-    8: #929292,
+    1: 'primary',
+    2: 'accent',
+    3: 'warn',
+    4: 'attention',
+    5: 'success',
+    // 6: '8'
 );
 
 @each $index, $color in $colors {
@@ -32,7 +33,7 @@ $colors: (
         .display-color {
             margin-right: 3rem;
             width: 5rem;
-            background: $color;
+            @include theme(background, $color);
             box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
                 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
                 12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
@@ -41,19 +42,19 @@ $colors: (
                 100px 100px 80px rgba(0, 0, 0, 0.07);
         }
 
-        $color-lightens: get-lightens($color);
-        $color-darkens: get-darkens($color);
+        // $color-lightens: get-lightens($color);
+        // $color-darkens: get-darkens($color);
 
-        @for $i from 0 through 100 {
-            .color:nth-child(#{$i}) {
-                background: map.get($color-lightens, 100 -$i);
-            }
-        }
+        // @for $i from 0 through 100 {
+        //     .color:nth-child(#{$i}) {
+        //         background: map.get($color-lightens, 100 -$i);
+        //     }
+        // }
 
-        @for $i from 0 through 100 {
-            .color:nth-child(#{$i + 100}) {
-                background: map.get($color-darkens, 100 - $i);
-            }
-        }
+        // @for $i from 0 through 100 {
+        //     .color:nth-child(#{$i + 100}) {
+        //         background: map.get($color-darkens, 100 - $i);
+        //     }
+        // }
     }
 }

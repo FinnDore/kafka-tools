@@ -1,11 +1,11 @@
-@import '~/src/_styles/themes/create-theme.function.scss';
+@import '~/src/_styles/functions/create-theme.function.scss';
 
 $light-theme-colors: (
     'primary': #4200ff,
     'accent': black,
     'warn': rgb(255, 0, 51),
-    'attention': #ff3c22,
-    'success': #00ff9d,
+    'attention': #ff2b2b,
+    'success': #00ff73,
     'background': white,
     'foreground': black,
     'shadow': black,

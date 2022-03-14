@@ -3,7 +3,6 @@
 @use 'sass:color';
 
 @import '~@angular/material/theming';
-@import '~/src/_styles/themes/theme-functions.scss';
 @import '~/src/_styles/themes/font-config.scss';
 
 @function create-theme($theme-colors: null) {
