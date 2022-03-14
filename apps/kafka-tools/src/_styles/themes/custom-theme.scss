@@ -1,7 +1,7 @@
 @import '~/src/_styles/themes/create-theme.function.scss';
 
-$dark-theme-colors: (
-    'primary': #4200ff,
+$custom-theme-colors: (
+    'primary': var(--custom-primary),
     'accent': black,
     'warn': red,
     'attention': #ff3c22,
@@ -19,4 +19,4 @@ $dark-theme-colors: (
     ),
 );
 
-$dark-theme: create-theme($dark-theme-colors);
+$dark-theme: create-theme($custom-theme-colors);

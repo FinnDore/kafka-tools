@@ -82,10 +82,10 @@
     // Theme Config
 
     $mat-primary: (
-        main: #4200ff,
-        lighter: #c6b3ff,
-        darker: #2b00ff,
-        200: #4200ff,
+        main: $theme-primary,
+        lighter: lighten(adjust-hue($theme-primary, -1deg), 35),
+        darker: adjust-hue($theme-primary, -6deg),
+        200: $theme-primary,
         // For slide toggle,
         contrast:
             (
@@ -97,10 +97,10 @@
     $theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
 
     $mat-accent: (
-        main: #000000,
-        lighter: #b3b3b3,
-        darker: #000000,
-        200: #000000,
+        main: $theme-accent,
+        lighter: lighten($theme-accent, 70),
+        darker: $theme-accent,
+        200: $theme-accent,
         // For slide toggle,
         contrast:
             (
@@ -113,10 +113,10 @@
     $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
 
     $mat-warn: (
-        main: #ff0032,
-        lighter: #ffb3c2,
-        darker: #a8071a,
-        200: #ff0032,
+        main: $theme-warn,
+        lighter: lighten($theme-warn, 35),
+        darker: darken(desaturate(adjust-hue($theme-warn, 5deg), 8), 16),
+        200: $theme-warn,
         // For slide toggle,
         contrast:
             (
