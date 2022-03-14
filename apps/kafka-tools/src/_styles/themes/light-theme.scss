@@ -1,14 +1,13 @@
 @import '~/src/_styles/themes/create-theme.function.scss';
 
-$dark-theme-colors: (
+$light-theme-colors: (
     'primary': #4200ff,
-    'accent': 4200ff,
-    // 'accent':  black,
+    'accent': black,
     'warn': crimson,
     'attention': #ff3c22,
     'success': #00ff9d,
-    'background': #0e0e0e,
-    'foreground': white,
+    'background': white,
+    'foreground': black,
     'shadow': black,
     'colors': (
         '1': #6f00ff,
@@ -20,4 +19,4 @@ $dark-theme-colors: (
     ),
 );
 
-$dark-theme: create-theme($dark-theme-colors);
+$light-theme: create-theme($light-theme-colors);

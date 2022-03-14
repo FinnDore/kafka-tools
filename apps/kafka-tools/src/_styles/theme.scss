@@ -7,8 +7,10 @@
 @use '@angular/material' as mat;
 
 @use 'sass:map';
+@import '~/src/_styles/themes/create-theme.function.scss';
 @import '~@angular/material/theming';
 @import '~/src/_styles/themes/dark-theme.scss';
+@import '~/src/_styles/themes/light-theme.scss';
 // Foreground Elements
 
 .show-if-dark,
@@ -18,14 +20,14 @@
 
 // Theme Init
 ::ng-deep .light-theme {
-    @include mat.all-component-themes($lightTheme);
+    @include mat.all-component-themes($light-theme);
 
     .show-if-light {
         display: block;
     }
 }
 ::ng-deep .dark-theme {
-    @include mat.all-component-themes($darkTheme);
+    @include mat.all-component-themes($dark-theme);
 
     .show-if-dark {
         display: block;
@@ -55,12 +57,12 @@
 @mixin theme($property: null, $key: null, $hue: darker) {
     // Get the required color palette from the color-config.
     ::ng-deep .light-theme & {
-        $color-config: mat.get-color-config($lightTheme);
+        $color-config: mat.get-color-config($light-theme);
         $color-palette: map.get($color-config, $key);
         #{$property}: mat.get-color-from-palette($color-palette, $hue);
     }
     ::ng-deep .dark-theme & {
-        $color-config: mat.get-color-config($darkTheme);
+        $color-config: mat.get-color-config($dark-theme);
         $color-palette: map.get($color-config, $key);
         #{$property}: mat.get-color-from-palette($color-palette, $hue);
     }

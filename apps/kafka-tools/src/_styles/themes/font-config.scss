@@ -20,3 +20,6 @@ $fontConfig: (
     caption: mat.define-typography-level(12px, 20px, 400, 'Roboto', 0.0333em),
     input: mat.define-typography-level(inherit, 1.125, 400, 'Roboto', 1.5px),
 );
+
+// Compute font config
+@include mat.core($fontConfig);
