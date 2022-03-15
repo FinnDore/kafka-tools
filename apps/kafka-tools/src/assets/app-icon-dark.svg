@@ -1,25 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="none" viewBox="0 0 128 128">
-  <path fill="#fff" d="M49 19h8v91h-8z"/>
-  <path fill="#4200FF" d="M49 19h8v91h-8z"/>
+  <path fill="#4200FF" d="M49 19h8v91h-8z" />
   <mask id="a" width="24" height="70" x="23" y="40" maskUnits="userSpaceOnUse" style="mask-type:alpha">
-    <path fill="#000" d="M23 40h24v70H23z"/>
-    <path fill="#000" d="M23 40h24v70H23z"/>
+    <path fill="#000" d="M23 40h24v70H23z" />
   </mask>
   <g mask="url(#a)">
-    <path fill="#fff" d="M18.797 35.51l6.214-6.244 31.34 31.495-6.214 6.245z"/>
-    <path fill="#fff" d="M18.797 35.51l6.214-6.244 31.34 31.495-6.214 6.245z"/>
+    <path fill="#fff" d="M18.797 35.51l6.214-6.244 31.34 31.495-6.214 6.245z" />
   </g>
   <g>
     <mask id="b" width="45" height="91" x="59" y="19" maskUnits="userSpaceOnUse" style="mask-type:alpha">
-      <path fill="#000" d="M59 19h45v91H59z"/>
-      <path fill="#000" d="M59 19h45v91H59z"/>
+      <path fill="#000" d="M59 19h45v91H59z" />
     </mask>
     <g mask="url(#b)">
-      <path fill="#fff" d="M50.127 68.532l6.215-6.245 48.36 48.6-6.214 6.244z"/>
-      <path fill="#fff" d="M50.127 68.532l6.215-6.245 48.36 48.6-6.214 6.244z"/>
+      <path fill="#fff" d="M50.127 68.532l6.215-6.245 48.36 48.6-6.214 6.244z" />
       <g>
-        <path fill="#fff" d="M102.854 7.097l6.214 6.245-68.353 68.691-6.214-6.245z"/>
-        <path fill="#fff" d="M102.854 7.097l6.214 6.245-68.353 68.691-6.214-6.245z"/>
+        <path fill="#fff" d="M102.854 7.097l6.214 6.245-68.353 68.691-6.214-6.245z" />
       </g>
     </g>
   </g>

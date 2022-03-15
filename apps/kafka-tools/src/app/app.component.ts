@@ -9,7 +9,7 @@ export class AppComponent {
     title = 'kafka-tools';
 
     readonly themes = ['light', 'dark', 'git-hub', 'pop-n-lock'];
-    currentThemeIndex = 3;
+    currentThemeIndex = 2;
 
     /**
      * Shuffles the current color theme
