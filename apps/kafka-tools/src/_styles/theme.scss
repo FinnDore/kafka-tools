@@ -8,9 +8,12 @@
 
 @use 'sass:map';
 @import '~@angular/material/theming';
-@import '~/src/_styles/functions/create-theme.function.scss';
+
+@import '~/src/_styles/themes/font-config.scss';
+@import '~/src/_styles/functions/create-theme-vars.function.scss';
 @import '~/src/_styles/themes/dark-theme.scss';
 @import '~/src/_styles/themes/light-theme.scss';
+@import '~/src/_styles/themes/git-hub-theme.scss';
 // Foreground Elements
 
 .show-if-dark,
@@ -19,23 +22,38 @@
 }
 
 // Theme Init
-::ng-deep .light-theme {
-    @include mat.all-component-themes($light-theme);
-
-    .show-if-light {
-        display: block;
+::ng-deep {
+    .light-theme {
+        @include mat.all-component-themes($light-theme);
+        @include create-theme-vars($light-theme-colors);
     }
-}
-::ng-deep .dark-theme {
-    @include mat.all-component-themes($dark-theme);
 
-    .show-if-dark {
-        display: block;
+    .dark-theme {
+        @include mat.all-component-themes($dark-theme);
+        @include create-theme-vars($dark-theme-colors);
+    }
+
+    .git-hub-theme {
+        @include mat.all-component-themes($git-hub-theme);
+        @include create-theme-vars($light-theme-colors);
+    }
+
+    .git-hub-theme,
+    .dark-theme {
+        .show-if-dark {
+            display: block;
+        }
+    }
+
+    .light-theme {
+        .show-if-light {
+            display: block;
+        }
     }
 }
 
 * {
-    transition: background-color 0.25s ease-out;
+    transition: background-color 0.15s ease-out;
 }
 
 // Specific component overrides, pieces that are not in line with the general theming
@@ -55,13 +73,19 @@
     min-height: 2.5em;
 }
 
-@mixin theme($property: null, $key: null, $hue: darker) {
-    // Get the required color palette from the color-config.
+@mixin theme($property: null, $key: null) {
     ::ng-deep .light-theme & {
         #{$property}: map.get($light-theme-colors, $key);
     }
 
     ::ng-deep .dark-theme & {
         #{$property}: map.get($dark-theme-colors, $key);
+    }
+
+    ::ng-deep .git-hub-theme & {
+        #{$property}: map.get($git-hub-colors, $key);
+    }
+    ::ng-deep & {
+        #{$property}: map.get($git-hub-colors, $key);
     }
 }

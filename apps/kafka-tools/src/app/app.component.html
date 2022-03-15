@@ -1,9 +1,9 @@
 <div
-    class="mat-app-background content"
-    [ngClass]="dark ? 'dark-theme' : 'light-theme'"
+    class="mat-app-background mat-typography content"
+    [ngClass]="themes[currentThemeIndex] + '-theme'"
 >
     <kafka-tools-window-controls
-        (click)="dark = !dark"
+        (click)="shuffleTheme()"
     ></kafka-tools-window-controls>
     <router-outlet></router-outlet>
 </div>

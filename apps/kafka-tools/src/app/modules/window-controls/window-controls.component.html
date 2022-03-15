@@ -12,14 +12,14 @@
         />
         <span class="app-name">Kafka Tools</span>
     </div>
-    <button mat-stroked-button (click)="minimize()">
+    <button mat-button (click)="minimize()">
         <fa-icon [icon]="faMinus"></fa-icon>
     </button>
-    <button mat-stroked-button class="min-max" (click)="maximizeOrMinimize()">
+    <button mat-button class="min-max" (click)="maximizeOrMinimize()">
         <fa-icon [icon]="faSquare"></fa-icon>
     </button>
 
-    <button mat-stroked-button class="close" (click)="close()">
+    <button mat-button class="close" (click)="close()">
         <fa-icon [icon]="faXmark"></fa-icon>
     </button>
 </div>

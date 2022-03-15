@@ -8,5 +8,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
     title = 'kafka-tools';
 
-    dark = true;
+    readonly themes = ['light', 'dark', 'git-hub'];
+    currentThemeIndex = 2;
+
+    /**
+     * Shuffles the current color theme
+     */
+    shuffleTheme(): void {
+        this.currentThemeIndex =
+            this.currentThemeIndex === this.themes.length - 1
+                ? 0
+                : this.currentThemeIndex + 1;
+    }
 }

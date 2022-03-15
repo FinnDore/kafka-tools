@@ -3,80 +3,77 @@
 @use 'sass:color';
 
 @import '~@angular/material/theming';
-@import '~/src/_styles/themes/font-config.scss';
 
 @function create-theme($theme-colors: null) {
     /** -----------------------------------  Theme ----------------------------------------- */
 
-    $theme-color-lightens-darkens: ();
+    $theme-primary: map.get($theme-colors, primary);
+    $theme-accent: map.get($theme-colors, accent);
+    $theme-warn: map.get($theme-colors, warn);
 
-    $theme-primary: map.get($theme-colors, 'primary');
-    $theme-accent: map.get($theme-colors, 'accent');
-    $theme-warn: map.get($theme-colors, 'warn');
-
-    $theme-success: map.get($theme-colors, 'success');
-    $theme-attention: map.get($theme-colors, 'attention');
-    $theme-background: map.get($theme-colors, 'background');
-    $theme-foreground: map.get($theme-colors, 'foreground');
-    $theme-shadow: map.get($theme-colors, 'shadow');
+    $theme-success: map.get($theme-colors, success);
+    $theme-attention: map.get($theme-colors, attention);
+    $theme-background: map.get($theme-colors, background);
+    $theme-foreground: map.get($theme-colors, foreground);
+    $theme-text: map.get($theme-colors, text);
+    $theme-shadow: map.get($theme-colors, shadow);
 
     /** -----------------------------------  A material Theme ----------------------------------------- */
 
     // Light Theme Text
-    $text: $theme-foreground;
-    $dark-primary-text: rgba($text, 0.87);
-    $dark-accent-text: rgba($dark-primary-text, 0.54);
-    $dark-disabled-text: rgba($dark-primary-text, 0.38);
-    $dark-dividers: rgba($dark-primary-text, 0.12);
-    $dark-focused: rgba($dark-primary-text, 0.12);
+    $text: $theme-text;
+    $primary-text: rgba($text, 0.87);
+    $dark-accent-text: rgba($primary-text, 0.54);
+    $disabled-text: rgba($primary-text, 0.38);
+    $dividers: rgba($primary-text, 0.12);
+    $focused: rgba($primary-text, 0.12);
 
-    $mat-light-theme-foreground: (
-        base: $theme-foreground,
-        divider: $dark-dividers,
-        dividers: $dark-dividers,
-        disabled: $dark-disabled-text,
+    $mat-theme-foreground: (
+        base: $theme-text,
+        divider: $dividers,
+        dividers: $dividers,
+        disabled: $disabled-text,
         disabled-button: rgba($text, 0.26),
-        disabled-text: $dark-disabled-text,
+        disabled-text: $disabled-text,
         elevation: $theme-shadow,
         secondary-text: $dark-accent-text,
-        hint-text: $dark-disabled-text,
+        hint-text: $disabled-text,
         accent-text: $dark-accent-text,
         icon: $dark-accent-text,
         icons: $dark-accent-text,
-        text: $dark-primary-text,
-        slider-min: $dark-primary-text,
+        text: $primary-text,
+        slider-min: $primary-text,
         slider-off: rgba($text, 0.26),
-        slider-off-active: $dark-disabled-text,
+        slider-off-active: $disabled-text,
     );
 
     // Background config
-    // Light bg
     $background: $theme-background;
-    $light-bg-darker-5: darken($background, 5%);
-    $light-bg-darker-10: darken($background, 10%);
-    $light-bg-darker-20: darken($background, 20%);
-    $light-bg-darker-30: darken($background, 30%);
-    $light-bg-lighter-5: lighten($background, 5%);
-    $dark-bg-tooltip: lighten($theme-background, 20%);
-    $dark-bg-alpha-4: rgba($theme-background, 0.04);
-    $dark-bg-alpha-12: rgba($theme-background, 0.12);
+    $bg-darker-5: darken($background, 5%);
+    $bg-darker-10: darken($background, 10%);
+    $bg-darker-20: darken($background, 20%);
+    $bg-darker-30: darken($background, 30%);
+    $bg-lighter-5: lighten($background, 5%);
+    $bg-tooltip: lighten($theme-background, 20%);
+    $bg-alpha-4: rgba($theme-background, 0.04);
+    $bg-alpha-12: rgba($theme-background, 0.12);
 
-    $mat-light-theme-background: (
+    $mat-theme-background: (
         background: $background,
-        status-bar: $light-bg-darker-20,
-        app-bar: $light-bg-darker-5,
-        hover: $dark-bg-alpha-4,
-        card: $light-bg-lighter-5,
-        dialog: $light-bg-lighter-5,
-        tooltip: $dark-bg-tooltip,
-        disabled-button: $dark-bg-alpha-12,
-        raised-button: $light-bg-lighter-5,
-        focused-button: $dark-focused,
-        selected-button: $light-bg-darker-20,
-        selected-disabled-button: $light-bg-darker-30,
-        disabled-button-toggle: $light-bg-darker-10,
-        unselected-chip: $light-bg-darker-10,
-        disabled-list-option: $light-bg-darker-10,
+        status-bar: $bg-darker-20,
+        app-bar: $bg-darker-5,
+        hover: $bg-alpha-4,
+        card: $bg-lighter-5,
+        dialog: $bg-lighter-5,
+        tooltip: $bg-tooltip,
+        disabled-button: $bg-alpha-12,
+        raised-button: $bg-lighter-5,
+        focused-button: $focused,
+        selected-button: $bg-darker-20,
+        selected-disabled-button: $bg-darker-30,
+        disabled-button-toggle: $bg-darker-10,
+        unselected-chip: $bg-darker-10,
+        disabled-list-option: $bg-darker-10,
     );
     // Theme Config
 
@@ -89,7 +86,7 @@
         contrast:
             (
                 main: $light-primary-text,
-                lighter: $dark-primary-text,
+                lighter: $primary-text,
                 darker: $light-primary-text,
             ),
     );
@@ -104,7 +101,7 @@
         contrast:
             (
                 main: $light-primary-text,
-                lighter: $dark-primary-text,
+                lighter: $primary-text,
                 darker: $light-primary-text,
             ),
     );
@@ -120,7 +117,7 @@
         contrast:
             (
                 main: $light-primary-text,
-                lighter: $dark-primary-text,
+                lighter: $primary-text,
                 darker: $light-primary-text,
             ),
     );
@@ -131,9 +128,9 @@
         primary: $theme-primary,
         accent: $theme-accent,
         warn: $theme-warn,
-        is-dark: false,
-        foreground: $mat-light-theme-foreground,
-        background: $mat-light-theme-background,
+        is-dark: true,
+        foreground: $mat-theme-foreground,
+        background: $mat-theme-background,
     );
     @return $theme;
 }

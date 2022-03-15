@@ -4,6 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProducerRoutingModule } from './producer-routing.module';
 import { ProducerComponent } from './producer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
     imports: [
         CommonModule,
@@ -11,6 +14,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         // Angular material
         MatButtonModule,
         MatSlideToggleModule,
+        MatDividerModule,
+        MatIconModule,
+        MatCardModule,
 
         // Local
         ProducerRoutingModule,

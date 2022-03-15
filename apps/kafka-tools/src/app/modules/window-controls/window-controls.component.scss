@@ -10,7 +10,6 @@
     width: calc(100% - 1.5rem);
     padding: 0.5rem;
     padding-left: 1rem;
-    @include theme(background, accent, lighten);
 
     .left-side {
         display: flex;
@@ -23,7 +22,7 @@
 
         .app-name {
             font-size: 1.4rem;
-            line-height: 1rem;
+            line-height: 1.25rem;
             font-variant: all-small-caps;
             margin: auto;
             margin-left: 0.25rem;
@@ -37,6 +36,6 @@
 }
 
 ::ng-deep .close:hover {
-    transition: border-colo 0.25s ease-out, background 0.25s ease-out;
-    @include theme(background, warn, darker);
+    transition: background 0.25s ease-out;
+    @include theme(background, warn);
 }
