@@ -1,0 +1,25 @@
+@import '~/src/_styles/functions/create-theme.function.scss';
+
+$light-theme-colors: (
+    primary: #4200ff,
+    accent: black,
+    warn: rgb(255, 0, 51),
+    attention: #ff2b2b,
+    success: #00ff73,
+    background: white,
+    text: black,
+    shadow: black,
+    colors: (
+        1: #6f00ff,
+        2: #00ff9d,
+        3: #ff3c22,
+        4: #7bff00,
+        5: #ffee00,
+        6: #929292,
+    ),
+    is-dark: false,
+);
+
+$light-theme: create-theme($light-theme-colors);
+
+$light-theme-export: (light, $light-theme, $light-theme-colors);

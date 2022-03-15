@@ -1,6 +1,6 @@
-@use '@angular/material' as mat;
 @use 'sass:map';
 @use 'sass:color';
+@use '@angular/material' as mat;
 
 @import '~@angular/material/theming';
 
@@ -17,6 +17,7 @@
     $theme-foreground: map.get($theme-colors, foreground);
     $theme-text: map.get($theme-colors, text);
     $theme-shadow: map.get($theme-colors, shadow);
+    $theme-is-dark: map.get($theme-colors, is-dark);
 
     /** -----------------------------------  A material Theme ----------------------------------------- */
 
@@ -128,7 +129,7 @@
         primary: $theme-primary,
         accent: $theme-accent,
         warn: $theme-warn,
-        is-dark: true,
+        is-dark: $theme-is-dark,
         foreground: $mat-theme-foreground,
         background: $mat-theme-background,
     );

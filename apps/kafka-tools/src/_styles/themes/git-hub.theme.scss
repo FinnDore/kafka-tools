@@ -17,6 +17,9 @@ $git-hub-colors: (
         5: #ffee00,
         6: #929292,
     ),
+    is-dark: true,
 );
 
 $git-hub-theme: create-theme($git-hub-colors);
+
+$git-hub-theme-export: (git-hub, $git-hub-theme, $git-hub-colors);

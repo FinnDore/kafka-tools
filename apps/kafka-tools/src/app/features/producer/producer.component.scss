@@ -1,7 +1,10 @@
 @use 'sass:map';
-@import '~/src/_styles/theme.scss';
+
 @import '~/src/_styles/functions/get-lightens.function.scss';
 @import '~/src/_styles/functions/get-darkens.function.scss';
+
+@import '~/src/_styles/mixins/theme.mixin.scss';
+
 :host {
     display: flex !important;
     justify-content: center;

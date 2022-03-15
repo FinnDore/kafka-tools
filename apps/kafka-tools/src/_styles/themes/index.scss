@@ -1,0 +1,8 @@
+// theme barrel file
+@import '~/src/_styles/themes/dark.theme.scss';
+@import '~/src/_styles/themes/light.theme.scss';
+@import '~/src/_styles/themes/git-hub.theme.scss';
+@import '~/src/_styles/themes/pop-n-lock.theme.scss';
+
+$themes: $light-theme-export, $dark-theme-export, $git-hub-theme-export,
+    $pop-n-lock-them-export;

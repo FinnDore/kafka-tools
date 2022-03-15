@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use 'sass:list';
+
+@import '~/src/_styles/theme.scss';
+
+@mixin theme($property: null, $key: null) {
+    @each $theme-values in $themes {
+        $theme-class-name: #{list.nth($theme-values, 1)}-theme;
+
+        ::ng-deep .#{$theme-class-name} & {
+            #{$property}: map.get(list.nth($theme-values, 3), $key);
+        }
+    }
+}

@@ -7,47 +7,37 @@
 @use '@angular/material' as mat;
 
 @use 'sass:map';
+@use 'sass:list';
+
 @import '~@angular/material/theming';
 
-@import '~/src/_styles/themes/font-config.scss';
+@import '~/src/_styles/font-config.scss';
 @import '~/src/_styles/functions/create-theme-vars.function.scss';
-@import '~/src/_styles/themes/dark-theme.scss';
-@import '~/src/_styles/themes/light-theme.scss';
-@import '~/src/_styles/themes/git-hub-theme.scss';
-// Foreground Elements
+
+@import '~/src/_styles/themes';
 
 .show-if-dark,
 .show-if-light {
     display: none;
 }
 
-// Theme Init
 ::ng-deep {
-    .light-theme {
-        @include mat.all-component-themes($light-theme);
-        @include create-theme-vars($light-theme-colors);
-    }
-
-    .dark-theme {
-        @include mat.all-component-themes($dark-theme);
-        @include create-theme-vars($dark-theme-colors);
-    }
-
-    .git-hub-theme {
-        @include mat.all-component-themes($git-hub-theme);
-        @include create-theme-vars($light-theme-colors);
-    }
-
-    .git-hub-theme,
-    .dark-theme {
-        .show-if-dark {
-            display: block;
+    @each $theme-values in $themes {
+        $theme-class-name: #{list.nth($theme-values, 1)}-theme;
+        .#{$theme-class-name} {
+            @include mat.all-component-themes(list.nth($theme-values, 2));
+            @include create-theme-vars(list.nth($theme-values, 3));
         }
-    }
 
-    .light-theme {
-        .show-if-light {
-            display: block;
+        $is-dark: map.get(list.nth($theme-values, 3), is-dark);
+        @if $is-dark {
+            .#{$theme-class-name} .show-if-dark {
+                display: block;
+            }
+        } @else {
+            .#{$theme-class-name} .show-if-light {
+                display: block;
+            }
         }
     }
 }
@@ -57,7 +47,6 @@
 }
 
 // Specific component overrides, pieces that are not in line with the general theming
-
 // Handle buttons appropriately, with respect to line-height
 .mat-raised-button,
 .mat-stroked-button,
@@ -71,21 +60,4 @@
 .mat-standard-chip {
     padding: 0.5em 0.85em;
     min-height: 2.5em;
-}
-
-@mixin theme($property: null, $key: null) {
-    ::ng-deep .light-theme & {
-        #{$property}: map.get($light-theme-colors, $key);
-    }
-
-    ::ng-deep .dark-theme & {
-        #{$property}: map.get($dark-theme-colors, $key);
-    }
-
-    ::ng-deep .git-hub-theme & {
-        #{$property}: map.get($git-hub-colors, $key);
-    }
-    ::ng-deep & {
-        #{$property}: map.get($git-hub-colors, $key);
-    }
 }
