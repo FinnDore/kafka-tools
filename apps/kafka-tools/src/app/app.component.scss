@@ -1,11 +1,22 @@
-:host {
+@import '~/src/_styles/theme.scss';
+
+:host .content {
     height: 100%;
     width: 100%;
     display: flex;
-    background: black;
+    flex-flow: column;
+
+    & > ::ng-deep :nth-child(3) {
+        height: 100%;
+        display: block;
+    }
 }
 
 img {
     margin: auto;
     height: 80vh;
+}
+
+kafka-tools-window-controls {
+    width: 100%;
 }

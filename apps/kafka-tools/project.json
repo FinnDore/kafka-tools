@@ -20,7 +20,8 @@
                 ],
                 "styles": [
                     "apps/kafka-tools/src/styles.scss",
-                    "apps/kafka-tools/src/_styles/css-reset.scss"
+                    "apps/kafka-tools/src/_styles/css-reset.scss",
+                    "apps/kafka-tools/src/_styles/theme.scss"
                 ],
                 "scripts": []
             },
@@ -29,13 +30,13 @@
                     "budgets": [
                         {
                             "type": "initial",
-                            "maximumWarning": "500kb",
-                            "maximumError": "1mb"
+                            "maximumWarning": "1.5mb",
+                            "maximumError": "2mb"
                         },
                         {
                             "type": "anyComponentStyle",
-                            "maximumWarning": "2kb",
-                            "maximumError": "4kb"
+                            "maximumWarning": "500kb",
+                            "maximumError": "500kb"
                         }
                     ],
                     "fileReplacements": [

@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use 'sass:color';
+
+@function get-darkens($base-color) {
+    $darkens-map: ();
+
+    @for $i from 0 through 100 {
+        $darkens-map: map.set(
+            $darkens-map,
+            $i,
+            color.scale($base-color, $lightness: $i + -100%)
+        );
+    }
+    @return $darkens-map;
+}

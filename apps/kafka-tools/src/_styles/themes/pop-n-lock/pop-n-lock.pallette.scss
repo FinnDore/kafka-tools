@@ -1,0 +1,19 @@
+$pop-n-lock-pallette: (
+    primary: #1f6feb,
+    accent: #201039,
+    warn: #bb3355,
+    attention: #ffcc44ed,
+    success: #ccff44,
+    background: #2c203c,
+    text: white,
+    shadow: black,
+    colors: (
+        1: #6f00ff,
+        2: #00ff9d,
+        3: #ff3c22,
+        4: #7bff00,
+        5: #ffee00,
+        6: #929292,
+    ),
+    is-dark: true,
+);

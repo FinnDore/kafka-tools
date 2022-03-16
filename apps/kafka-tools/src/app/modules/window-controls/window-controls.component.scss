@@ -1,0 +1,43 @@
+@import '~/src/_styles/mixins/theme.mixin.scss';
+
+.container {
+    width: 100%;
+}
+
+:host .container {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 1.5rem);
+    padding: 0.5rem;
+    padding-left: 1rem;
+
+    .left-side {
+        display: flex;
+        margin-right: auto;
+
+        img {
+            margin: auto;
+            height: 1.5rem;
+            aspect-ratio: 1;
+        }
+
+        .app-name {
+            font-size: 1.4rem;
+            line-height: 1.25rem;
+            font-variant: all-small-caps;
+            margin: auto;
+            margin-left: 0.25rem;
+            user-select: none;
+        }
+    }
+
+    button {
+        min-width: 0;
+        margin: 0 0.25rem;
+    }
+}
+
+::ng-deep .close:hover {
+    transition: background 0.25s ease-out;
+    @include theme(background, warn);
+}

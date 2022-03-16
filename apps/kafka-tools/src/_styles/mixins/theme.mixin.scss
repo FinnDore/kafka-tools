@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use 'sass:list';
+
+@import '~/src/_styles/themes/pallettes.scss';
+
+@mixin theme($property: null, $key: null) {
+    @each $pallette-values in $pallettes {
+        $theme-class-name: #{list.nth($pallette-values, 1)}-theme;
+
+        ::ng-deep .#{$theme-class-name} & {
+            #{$property}: map.get(list.nth($pallette-values, 2), $key);
+        }
+    }
+}

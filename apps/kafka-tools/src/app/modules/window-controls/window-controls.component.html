@@ -1,0 +1,25 @@
+<div class="container" data-tauri-drag-region>
+    <div class="left-side">
+        <img
+            class="show-if-dark"
+            src="/assets/app-icon-dark.svg"
+            alt="Kafka tools logo"
+        />
+        <img
+            class="show-if-light"
+            src="/assets/app-icon-light.svg"
+            alt="Kafka tools logo"
+        />
+        <span class="app-name">Kafka Tools</span>
+    </div>
+    <button mat-button (click)="minimize()">
+        <fa-icon [icon]="faMinus"></fa-icon>
+    </button>
+    <button mat-button class="min-max" (click)="maximizeOrMinimize()">
+        <fa-icon [icon]="faSquare"></fa-icon>
+    </button>
+
+    <button mat-button class="close" (click)="close()">
+        <fa-icon [icon]="faXmark"></fa-icon>
+    </button>
+</div>

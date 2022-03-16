@@ -1,0 +1,60 @@
+/**
+* Generated theme by Material Theme Generator
+* https://materialtheme.arcsine.dev
+* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzQyMDBmZiIsIj9lcjwjYzZiM2ZmIiwiO2VyPCMyYjAwZmZ$LCIlPmBePCMwMDAwMDAiLCI~ZXI8I2IzYjNiMyIsIjtlcjwjMDAwMDAwfiwid2Fybj5gXjwjZmYwMDMyIiwiP2VyPCNmZmIzYzIiLCI7ZXI8I2ZmMDAxZn4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMwZTBlMGV$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz5mYWxzZSwidmVyc2lvbj4xM30=
+*/
+
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use 'sass:list';
+
+@import '~/src/_styles/font-config.scss';
+@import '~/src/_styles/functions/create-theme-vars.function.scss';
+
+@import '~/src/_styles/themes';
+
+.show-if-dark,
+.show-if-light {
+    display: none;
+}
+
+::ng-deep {
+    @each $theme-values in $themes {
+        $theme-class-name: #{list.nth($theme-values, 1)}-theme;
+        .#{$theme-class-name} {
+            @include mat.all-component-themes(list.nth($theme-values, 2));
+            @include create-theme-vars(list.nth($theme-values, 3));
+        }
+
+        $is-dark: map.get(list.nth($theme-values, 3), is-dark);
+        @if $is-dark {
+            .#{$theme-class-name} .show-if-dark {
+                display: block;
+            }
+        } @else {
+            .#{$theme-class-name} .show-if-light {
+                display: block;
+            }
+        }
+    }
+}
+
+* {
+    transition: background-color 0.15s ease-out;
+}
+
+// Specific component overrides, pieces that are not in line with the general theming
+// Handle buttons appropriately, with respect to line-height
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button {
+    padding: 0 1.15em;
+    margin: 0 0.65em;
+    min-width: 3em;
+    line-height: 36.4px;
+}
+
+.mat-standard-chip {
+    padding: 0.5em 0.85em;
+    min-height: 2.5em;
+}
