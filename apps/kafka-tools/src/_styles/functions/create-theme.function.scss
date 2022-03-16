@@ -1,5 +1,5 @@
-@use 'sass:map';
 @use 'sass:color';
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @import '~@angular/material/theming';
@@ -21,7 +21,6 @@
 
     /** -----------------------------------  A material Theme ----------------------------------------- */
 
-    // Light Theme Text
     $text: $theme-text;
     $primary-text: rgba($text, 0.87);
     $dark-accent-text: rgba($primary-text, 0.54);
@@ -48,7 +47,6 @@
         slider-off-active: $disabled-text,
     );
 
-    // Background config
     $background: $theme-background;
     $bg-darker-5: darken($background, 5%);
     $bg-darker-10: darken($background, 10%);
@@ -76,7 +74,6 @@
         unselected-chip: $bg-darker-10,
         disabled-list-option: $bg-darker-10,
     );
-    // Theme Config
 
     $mat-primary: (
         main: $theme-primary,

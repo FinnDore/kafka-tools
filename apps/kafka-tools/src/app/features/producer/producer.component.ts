@@ -6,6 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./producer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProducerComponent {
-    readonly paletteArray = new Array(200);
-}
+export class ProducerComponent {}

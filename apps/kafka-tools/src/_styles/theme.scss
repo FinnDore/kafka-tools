@@ -5,11 +5,8 @@
 */
 
 @use '@angular/material' as mat;
-
 @use 'sass:map';
 @use 'sass:list';
-
-@import '~@angular/material/theming';
 
 @import '~/src/_styles/font-config.scss';
 @import '~/src/_styles/functions/create-theme-vars.function.scss';

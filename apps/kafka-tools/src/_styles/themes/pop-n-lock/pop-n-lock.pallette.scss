@@ -1,6 +1,4 @@
-@import '~/src/_styles/functions/create-theme.function.scss';
-
-$pop-n-lock-colors: (
+$pop-n-lock-pallette: (
     primary: #1f6feb,
     accent: #201039,
     warn: #bb3355,
@@ -19,7 +17,3 @@ $pop-n-lock-colors: (
     ),
     is-dark: true,
 );
-
-$pop-n-lock-theme: create-theme($pop-n-lock-colors);
-
-$pop-n-lock-them-export: (pop-n-lock, $pop-n-lock-theme, $pop-n-lock-colors);

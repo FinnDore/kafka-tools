@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { appWindow } from '@tauri-apps/api/window';
@@ -6,6 +6,7 @@ import { appWindow } from '@tauri-apps/api/window';
     selector: 'kafka-tools-window-controls',
     templateUrl: './window-controls.component.html',
     styleUrls: ['./window-controls.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WindowControlsComponent {
     readonly faXmark = faXmark;

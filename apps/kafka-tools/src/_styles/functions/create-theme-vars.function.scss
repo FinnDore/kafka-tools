@@ -1,6 +1,4 @@
-@use '@angular/material' as mat;
 @use 'sass:map';
-@use 'sass:color';
 
 @mixin create-theme-vars($theme-colors: null) {
     --theme-primary: #{map.get($theme-colors, primary)};

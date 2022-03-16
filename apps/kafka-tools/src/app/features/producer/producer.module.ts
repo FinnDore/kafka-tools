@@ -12,11 +12,6 @@ import { MatCardModule } from '@angular/material/card';
         CommonModule,
 
         // Angular material
-        MatButtonModule,
-        MatSlideToggleModule,
-        MatDividerModule,
-        MatIconModule,
-        MatCardModule,
 
         // Local
         ProducerRoutingModule,

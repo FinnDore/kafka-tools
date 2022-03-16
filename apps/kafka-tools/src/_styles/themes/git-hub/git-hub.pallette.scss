@@ -1,6 +1,4 @@
-@import '~/src/_styles/functions/create-theme.function.scss';
-
-$git-hub-colors: (
+$git-hub-pallette: (
     primary: #1f6feb,
     accent: #21262d,
     warn: #f85149,
@@ -19,7 +17,3 @@ $git-hub-colors: (
     ),
     is-dark: true,
 );
-
-$git-hub-theme: create-theme($git-hub-colors);
-
-$git-hub-theme-export: (git-hub, $git-hub-theme, $git-hub-colors);

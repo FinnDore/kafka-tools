@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -13,7 +12,6 @@ import { WindowControlsModule } from './modules/window-controls/window-controls.
         BrowserAnimationsModule,
 
         // Angular material
-        MatButtonModule,
 
         // Local modules
         AppRoutingModule,
