@@ -13,12 +13,12 @@
     "private": true,
     "dependencies": {
         "@angular/animations": "13.2.5",
-        "@angular/cdk": "^13.2.6",
+        "@angular/cdk": "13.2.6",
         "@angular/common": "13.2.5",
         "@angular/compiler": "13.2.5",
         "@angular/core": "13.2.5",
         "@angular/forms": "13.2.5",
-        "@angular/material": "^13.2.6",
+        "@angular/material": "13.2.6",
         "@angular/platform-browser": "13.2.5",
         "@angular/platform-browser-dynamic": "13.2.5",
         "@angular/router": "13.2.5",
@@ -28,7 +28,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.0.0",
         "@nrwl/angular": "13.8.4",
         "@nrwl/js": "13.8.4",
-        "@tauri-apps/api": "^1.0.0-beta.8",
+        "@tauri-apps/api": "1.0.0-beta.8",
         "rxjs": "7.5.4",
         "tslib": "2.3.1",
         "zone.js": "0.11.5"
