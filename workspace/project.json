@@ -21,5 +21,5 @@
             }
         }
     },
-    "implicitDependencies": ["tauri-client"]
+    "implicitDependencies": ["tauri-client", "kafka-tools"]
 }
