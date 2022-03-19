@@ -29,6 +29,7 @@
         "@nrwl/angular": "13.8.4",
         "@nrwl/js": "13.8.4",
         "@tauri-apps/api": "1.0.0-beta.8",
+        "kafkajs": "^1.16.0",
         "rxjs": "7.5.4",
         "tslib": "2.3.1",
         "zone.js": "0.11.5"
