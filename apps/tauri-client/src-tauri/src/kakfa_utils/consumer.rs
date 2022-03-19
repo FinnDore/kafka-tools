@@ -1,43 +1,49 @@
 use async_trait::async_trait;
+use futures::stream::FuturesUnordered;
+use futures::{StreamExt, TryStreamExt};
 use rdkafka::config::ClientConfig;
-use rdkafka::consumer::{Consumer, DefaultConsumerContext, MessageStream, StreamConsumer};
-use rdkafka::message::OwnedHeaders;
-use std::time::Duration;
+use rdkafka::consumer::stream_consumer::StreamConsumer;
+use rdkafka::consumer::Consumer;
 
 #[async_trait]
 pub trait KafkaConsumer {
-    async fn consume_topic(&self, topic: &str);
-    async fn new(group_id: &str, broker: &str, topic: &str);
+    fn consume_topic(&self, topic: &str);
+    async fn listen(&self);
+    fn new(group_id: &str, broker: &str) -> Self;
 }
 
-pub struct aConsumer {
+pub struct ConsumerManager {
     consumer: StreamConsumer,
 }
 
 #[async_trait]
-impl KafkaConsumer for aConsumer {
+impl KafkaConsumer for ConsumerManager {
     /// Produces the given message to the given topic
     /// # Arguments
     ///
     /// * `topic` - The topic to produce to.
     /// * `message` - The message to produce.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// let my_kafka_producer = Producer::new("localhost:9092");]
-    /// my_kafka_producer.send_kafka_message("test-topic", "My message!")
-    /// ```
-    async fn consume_topic(&self, topic: &str) {
+    fn consume_topic(&self, topic: &str) {
         &self
             .consumer
             .subscribe(&[&topic])
             .expect("Can't subscribe to specified topic");
-
-        // println!("Future completed. Result: {:?}", delivery_status);
     }
 
-    async fn new(group_id: &str, broker: &str, topic: &str) {
+    async fn listen(&self) {
+        println!("listening for messages");
+        &self
+            .consumer
+            .stream()
+            .try_for_each(|borrowed_message| async move {
+                println!("messsage {:?}", borrowed_message);
+                Ok(())
+            })
+            .await
+            .expect("stream processing failed");
+    }
+
+    fn new(group_id: &str, broker: &str) -> Self {
         let consumer: StreamConsumer = ClientConfig::new()
             .set("group.id", group_id)
             .set("bootstrap.servers", broker)
@@ -47,24 +53,11 @@ impl KafkaConsumer for aConsumer {
             .create()
             .expect("Consumer creation failed");
 
-        consumer
-            .subscribe(&[&topic])
-            .expect("Can't subscribe to specified topic");
+        let manager = ConsumerManager { consumer };
+        manager.listen();
 
-        println!("listening to {:?}", topic);
-        loop {
-            match consumer.recv().await {
-                Err(e) => println!("Kafka error: {}", e),
-                Ok(m) => {
-                    println!("messsage {:?}", m);
-
-                    // consumer.commit_message(&m, CommitMode::Async).unwrap();
-                }
-            }
-        }
+        manager
     }
-
-    // aConsumer { consumer }
 }
 
 // (|borrowed_message| {

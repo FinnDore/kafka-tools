@@ -15,4 +15,12 @@ export class ProducerComponent {
     sendMessage(topic: string, message: string): void {
         invoke('send_kafka_message', { topic, message });
     }
+
+    /**
+     * Listens to a kafka topic
+     * @param topic the topic to listen to
+     */
+    listenToTopic(topic: string): void {
+        invoke('listen_to_topic', { topic });
+    }
 }
