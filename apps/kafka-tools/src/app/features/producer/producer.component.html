@@ -1,7 +1,16 @@
 <mat-form-field appearance="outline">
+    <label>TopicName</label>
+    <mat-label>Input</mat-label>
+    <input matInput #topicNameInput value="topic-test" />
+</mat-form-field>
+<mat-form-field appearance="outline">
+    <label>Message</label>
     <mat-label>Input</mat-label>
     <input matInput #input />
 </mat-form-field>
-<button mat-raised-button (click)="sendMessage(input.value)">
+<button
+    mat-raised-button
+    (click)="sendMessage(topicNameInput.value, input.value)"
+>
     Send message
 </button>

@@ -9,9 +9,10 @@ import { invoke } from '@tauri-apps/api';
 export class ProducerComponent {
     /**
      * Sends a kafka message to a topic
+     * @param topic the topic to send the message to
      * @param message the message to send
      */
-    sendMessage(message: string): void {
-        invoke('send_kafka_message', { topic: 'topic-test', message });
+    sendMessage(topic: string, message: string): void {
+        invoke('send_kafka_message', { topic, message });
     }
 }
