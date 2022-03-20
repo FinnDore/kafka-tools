@@ -21,6 +21,13 @@ export class ProducerComponent {
      * @param topic the topic to listen to
      */
     listenToTopic(topic: string): void {
-        invoke('listen_to_topic', { topic });
+        invoke('subscribe_to_topic', { topic });
+    }
+    /**
+     * unlistens to a kafka topic
+     * @param topic the topic to listen to
+     */
+    unsubscribeToTopic(topic: string): void {
+        invoke('unsubscribe_from_topic', { topic });
     }
 }

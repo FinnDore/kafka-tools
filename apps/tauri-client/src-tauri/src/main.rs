@@ -9,10 +9,10 @@ use tauri::command;
 use tauri::State;
 use tokio::task;
 mod kakfa_utils;
-
 use crate::kakfa_utils::consumer::{ConsumerManager, KafkaConsumer};
 use crate::kakfa_utils::producer::{KafkaProducer, Producer};
-
+use std::sync::{Arc, Mutex};
+use std::thread;
 #[command(async)]
 async fn send_kafka_message(
     kafka_producer: State<'_, Producer>,
@@ -24,21 +24,25 @@ async fn send_kafka_message(
 }
 
 #[command(async)]
-async fn listen_to_topic(
-    consumer_manager: State<'_, ConsumerManager>,
-    topic: &str,
+async fn subscribe_to_topic(
+    consumer_manager: State<'_, Mutex<ConsumerManager>>,
+    topic: String,
 ) -> Result<(), ()> {
-    println!("consume from: {:?}", topic);
-    consumer_manager.consume_topic(topic);
+    consumer_manager.lock().unwrap().consume_topic(topic);
     Ok(())
 }
 
 #[command(async)]
-async fn listen(consumer_manager: State<'_, ConsumerManager>, topic: &str) -> Result<(), ()> {
-    tauri::async_runtime::spawn(consumer_manager.listen());
-
+async fn unsubscribe_from_topic(
+    consumer_manager: State<'_, Mutex<ConsumerManager>>,
+    topic: String,
+) -> Result<(), ()> {
+    consumer_manager.lock().unwrap().un_consume_topic(topic);
     Ok(())
 }
+
+// #[command(async)]
+// fn activate_consumer(consumer_manager: State<'_, Mutex<ConsumerManager>>) -> Result<(), ()> {}
 
 #[tokio::main]
 async fn main() {
@@ -46,14 +50,19 @@ async fn main() {
     print!("rd_kafka_version: 0x{:08x}, {}", version_n, version_s);
 
     let broker = "localhost:9092";
+    let c = ConsumerManager::new("group1", &broker);
+    tauri::async_runtime::spawn(c.listen());
+
+    let consumer = Mutex::new(c);
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             send_kafka_message,
-            listen_to_topic
+            subscribe_to_topic,
+            unsubscribe_from_topic
         ])
         .manage(Producer::new("localhost:9092"))
-        .manage(ConsumerManager::new("group1", &broker))
+        .manage(consumer)
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

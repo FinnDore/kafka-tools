@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProducerRoutingModule } from './producer-routing.module';
 import { ProducerComponent } from './producer.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
     imports: [
         CommonModule,
@@ -11,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         // Angular material
         MatFormFieldModule,
         MatButtonModule,
+        MatInputModule,
 
         // Local
         ProducerRoutingModule,

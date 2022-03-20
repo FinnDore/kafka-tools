@@ -1,11 +1,9 @@
 <mat-form-field appearance="outline">
-    <label>TopicName</label>
-    <mat-label>Input</mat-label>
+    <mat-label>TopicName</mat-label>
     <input matInput #topicNameInput value="topic-test" />
 </mat-form-field>
 <mat-form-field appearance="outline">
-    <label>Message</label>
-    <mat-label>Input</mat-label>
+    <mat-label>Message</mat-label>
     <input matInput #input />
 </mat-form-field>
 <button
@@ -16,4 +14,7 @@
 </button>
 <button mat-raised-button (click)="listenToTopic(topicNameInput.value)">
     Listen
+</button>
+<button mat-raised-button (click)="unsubscribeToTopic(topicNameInput.value)">
+    unlisten
 </button>
