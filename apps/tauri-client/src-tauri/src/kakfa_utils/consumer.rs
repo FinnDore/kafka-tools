@@ -11,7 +11,7 @@ pub trait KafkaConsumer {
     fn consume_topic(&mut self, topic: String);
     fn un_consume_topic(&mut self, topic: String);
     // fn get_subs(&self) -> &Vec<String>;
-    async fn listen(&self);
+    fn listen(&self);
     fn new(group_id: &str, broker: &str) -> Self;
 }
 
@@ -35,21 +35,21 @@ impl KafkaConsumer for ConsumerManager {
                 .subscribe(&[topic_str])
                 .expect("Can't subscribe to specified topic");
 
+            println!("listen to topic {:?}", topic);
             self.subscription_list.push(topic);
+
+            &self
+                .consumer
+                .stream()
+                .try_for_each(|borrowed_message| async move {
+                    println!("messsage {:?}", borrowed_message);
+                    Ok(())
+                });
         }
     }
 
-    async fn listen(&self) {
+    fn listen(&self) {
         println!("listening for messages");
-        &self
-            .consumer
-            .stream()
-            .try_for_each(|borrowed_message| async move {
-                println!("messsage {:?}", borrowed_message);
-                Ok(())
-            })
-            .await
-            .expect("stream processing failed");
     }
 
     /// Stops consuming from from a given topic
