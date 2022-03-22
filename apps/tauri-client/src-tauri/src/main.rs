@@ -6,6 +6,9 @@
 use crate::kakfa_utils::consumer::{ConsumerManager, KafkaConsumer};
 use crate::kakfa_utils::producer::{KafkaProducer, Producer};
 
+use serde::Serialize;
+use tauri::{api::rpc::format_callback, Manager};
+
 use futures::TryStreamExt;
 use rdkafka::config::ClientConfig;
 use rdkafka::consumer::stream_consumer::StreamConsumer;
@@ -19,7 +22,12 @@ use tauri::State;
 
 mod kakfa_utils;
 
-async fn run_async_processor(brokers: String, group_id: String, input_topic: String) {
+async fn run_async_processor(
+    brokers: String,
+    group_id: String,
+    input_topic: String,
+    window: tauri::Window,
+) {
     // Create the `StreamConsumer`, to receive the messages from the topic in form of a `Stream`.
     let consumer: StreamConsumer = ClientConfig::new()
         .set("group.id", &group_id)
@@ -48,6 +56,9 @@ async fn run_async_processor(brokers: String, group_id: String, input_topic: Str
         });
 
         println!("The messages is: {:?}", outbound_message.to_string());
+        window
+            .emit("kafka-message", outbound_message.to_string())
+            .unwrap();
         async move { Ok(()) }
     });
 
@@ -96,11 +107,7 @@ async fn main() {
 
     let broker = "localhost:9092";
     let consumer = Mutex::new(ConsumerManager::new("group1", &broker));
-    tokio::spawn(run_async_processor(
-        String::from("localhost:9092"),
-        String::from("testaaa"),
-        String::from("topic-test"),
-    ));
+
     consumer
         .lock()
         .unwrap()
@@ -112,6 +119,17 @@ async fn main() {
             unsubscribe_from_topic,
             activate_consumer
         ])
+        .setup(|app| {
+            let window = app.get_window("main").unwrap();
+            tauri::async_runtime::spawn(run_async_processor(
+                String::from("localhost:9092"),
+                String::from("testaaa"),
+                String::from("topic-test"),
+                window,
+            ));
+
+            Ok(())
+        })
         .manage(Producer::new("localhost:9092"))
         .manage(consumer)
         .run(tauri::generate_context!())
