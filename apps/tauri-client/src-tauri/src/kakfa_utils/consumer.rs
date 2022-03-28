@@ -1,23 +1,70 @@
 use async_trait::async_trait;
-use futures::stream::FuturesUnordered;
-use futures::{StreamExt, TryStreamExt};
+
+use futures::future::abortable;
+use futures::TryStreamExt;
 use rdkafka::config::ClientConfig;
 use rdkafka::consumer::stream_consumer::StreamConsumer;
 use rdkafka::consumer::Consumer;
-use std::vec::Vec;
+use serde_json::json;
+use std::collections::HashMap;
+
+use rdkafka::Message;
+
+async fn run_async_processor(
+    brokers: String,
+    group_id: String,
+    input_topic: String,
+    window: tauri::Window,
+) {
+    // Create the `StreamConsumer`, to receive the messages from the topic in form of a `Stream`.
+    let consumer: StreamConsumer = ClientConfig::new()
+        .set("group.id", &group_id)
+        .set("bootstrap.servers", &brokers)
+        .set("enable.partition.eof", "false")
+        .set("session.timeout.ms", "6000")
+        .set("enable.auto.commit", "false")
+        .create()
+        .expect("Consumer creation failed");
+
+    consumer
+        .subscribe(&[&input_topic])
+        .expect("Can't subscribe to specified topic");
+
+    // Create the outer pipeline on the message stream.
+    let stream_processor = consumer.stream().try_for_each(|borrowed_message| {
+        let msg = borrowed_message.detach();
+        //   std::str::from_utf8(
+
+        let payload = std::str::from_utf8(msg.payload().unwrap()).unwrap();
+        let topic = msg.topic();
+
+        let outbound_message = json!({
+            "payload": payload,
+            "topic": topic
+        });
+
+        println!("The messages is: {:?}", outbound_message.to_string());
+        window
+            .emit("kafka-message", outbound_message.to_string())
+            .unwrap();
+        async move { Ok(()) }
+    });
+
+    println!("Starting event loop");
+    stream_processor.await.expect("stream processing failed");
+    println!("Stream processing terminated");
+}
 
 #[async_trait]
 pub trait KafkaConsumer {
-    fn consume_topic(&mut self, topic: String);
+    fn consume_topic(&mut self, topic: String, window: tauri::Window);
     fn un_consume_topic(&mut self, topic: String);
     // fn get_subs(&self) -> &Vec<String>;
-    fn listen(&self);
-    fn new(group_id: &str, broker: &str) -> Self;
+    fn new() -> Self;
 }
 
 pub struct ConsumerManager {
-    consumer: StreamConsumer,
-    subscription_list: Vec<String>,
+    consumers: HashMap<String, futures::future::AbortHandle>,
 }
 
 #[async_trait]
@@ -27,29 +74,20 @@ impl KafkaConsumer for ConsumerManager {
     ///
     /// * `topic` - The topic to produce to.
     /// * `message` - The message to produce.
-    fn consume_topic(&mut self, topic: String) {
-        if !&self.subscription_list.contains(&topic) {
-            let topic_str: &str = &topic;
+    fn consume_topic(&mut self, topic: String, window: tauri::Window) {
+        // if &self.consumers.get(top{
 
-            self.consumer
-                .subscribe(&[topic_str])
-                .expect("Can't subscribe to specified topic");
+        // }
+        let topic_name = topic.to_owned();
+        let (task, abortHandle) = abortable(run_async_processor(
+            String::from("localhost:9092"),
+            String::from("testaaa"),
+            topic,
+            window,
+        ));
+        tauri::async_runtime::spawn(task);
 
-            println!("listen to topic {:?}", topic);
-            self.subscription_list.push(topic);
-
-            &self
-                .consumer
-                .stream()
-                .try_for_each(|borrowed_message| async move {
-                    println!("messsage {:?}", borrowed_message);
-                    Ok(())
-                });
-        }
-    }
-
-    fn listen(&self) {
-        println!("listening for messages");
+        self.consumers.insert(topic_name, abortHandle);
     }
 
     /// Stops consuming from from a given topic
@@ -58,53 +96,15 @@ impl KafkaConsumer for ConsumerManager {
     /// * `topic` - The topic to stop consuming from
     /// * `message` - The message to produce.
     fn un_consume_topic(&mut self, topic: String) {
-        print!(
-            "Consuming from {:?} about to unconsumed from {:?}",
-            &self.subscription_list, topic
-        );
-        if !&self.subscription_list.contains(&topic) {
-            let index = self
-                .subscription_list
-                .iter()
-                .position(|current_topic| current_topic == &topic)
-                .unwrap();
-
-            &self.subscription_list.remove(index);
-            &self.consumer.unsubscribe();
-
-            let topics = self.subscription_list.iter();
-            let topics_as_str: Vec<&str> = topics.map(|s| s.as_str()).collect();
-
-            &self
-                .consumer
-                .subscribe(&topics_as_str[..])
-                .expect("Can't subscribe to specified topic");
-        }
-
-        print!("Consuming from {:?}", &self.subscription_list);
+        print!("About to unconsumed from {:?}", topic);
+        let removed_key = self.consumers.remove(&topic);
+        removed_key.unwrap().abort();
+        print!("Consuming from {:?}", topic);
     }
 
-    fn new(group_id: &str, broker: &str) -> Self {
-        let consumer: StreamConsumer = ClientConfig::new()
-            .set("group.id", group_id)
-            .set("bootstrap.servers", broker)
-            .set("enable.partition.eof", "false")
-            .set("session.timeout.ms", "6000")
-            .set("enable.auto.commit", "false")
-            .create()
-            .expect("Consumer creation failed");
-
-        let manager = ConsumerManager {
-            consumer,
-            subscription_list: Vec::new(),
-        };
-
-        manager
+    fn new() -> Self {
+        ConsumerManager {
+            consumers: HashMap::new(),
+        }
     }
 }
-
-// (|borrowed_message| {
-//     async move {
-//         // Process each message;
-//         println!(borrowed_message)
-//     });
