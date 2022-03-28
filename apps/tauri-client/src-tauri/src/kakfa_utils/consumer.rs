@@ -1,5 +1,3 @@
-use async_trait::async_trait;
-
 use futures::future::abortable;
 use futures::TryStreamExt;
 use rdkafka::config::ClientConfig;
@@ -55,7 +53,6 @@ async fn run_async_processor(
     println!("Stream processing terminated");
 }
 
-#[async_trait]
 pub trait KafkaConsumer {
     fn consume_topic(&mut self, topic: String, window: tauri::Window);
     fn un_consume_topic(&mut self, topic: String);
@@ -67,7 +64,6 @@ pub struct ConsumerManager {
     consumers: HashMap<String, futures::future::AbortHandle>,
 }
 
-#[async_trait]
 impl KafkaConsumer for ConsumerManager {
     /// Produces the given message to the given topic
     /// # Arguments

@@ -6,16 +6,7 @@
 use crate::kakfa_utils::consumer::{ConsumerManager, KafkaConsumer};
 use crate::kakfa_utils::producer::{KafkaProducer, Producer};
 
-use serde::Serialize;
-use tauri::{api::rpc::format_callback, Manager};
-
-use futures::TryStreamExt;
-use rdkafka::config::ClientConfig;
-use rdkafka::consumer::stream_consumer::StreamConsumer;
-use rdkafka::consumer::Consumer;
 use rdkafka::util::get_rdkafka_version;
-use rdkafka::Message;
-use serde_json::json;
 use std::sync::Mutex;
 use tauri::command;
 use tauri::State;
@@ -56,9 +47,6 @@ async fn main() {
     let (version_n, version_s) = get_rdkafka_version();
     print!("rd_kafka_version: 0x{:08x}, {}", version_n, version_s);
 
-    let broker = "localhost:9092";
-    let consumer = Mutex::new(ConsumerManager::new());
-
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             send_kafka_message,
@@ -66,7 +54,7 @@ async fn main() {
             subscribe_to_topic
         ])
         .manage(Producer::new("localhost:9092"))
-        .manage(consumer)
+        .manage(Mutex::new(ConsumerManager::new()))
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
