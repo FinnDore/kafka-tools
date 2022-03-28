@@ -75,19 +75,18 @@ impl KafkaConsumer for ConsumerManager {
     /// * `topic` - The topic to produce to.
     /// * `message` - The message to produce.
     fn consume_topic(&mut self, topic: String, window: tauri::Window) {
-        // if &self.consumers.get(top{
+        if !&self.consumers.contains_key(&topic) {
+            let topic_name = topic.to_owned();
+            let (task, abort_handle) = abortable(run_async_processor(
+                String::from("localhost:9092"),
+                String::from("testaaa"),
+                topic,
+                window,
+            ));
+            tauri::async_runtime::spawn(task);
 
-        // }
-        let topic_name = topic.to_owned();
-        let (task, abortHandle) = abortable(run_async_processor(
-            String::from("localhost:9092"),
-            String::from("testaaa"),
-            topic,
-            window,
-        ));
-        tauri::async_runtime::spawn(task);
-
-        self.consumers.insert(topic_name, abortHandle);
+            self.consumers.insert(topic_name, abort_handle);
+        }
     }
 
     /// Stops consuming from from a given topic
@@ -96,10 +95,11 @@ impl KafkaConsumer for ConsumerManager {
     /// * `topic` - The topic to stop consuming from
     /// * `message` - The message to produce.
     fn un_consume_topic(&mut self, topic: String) {
-        print!("About to unconsumed from {:?}", topic);
-        let removed_key = self.consumers.remove(&topic);
-        removed_key.unwrap().abort();
-        print!("Consuming from {:?}", topic);
+        if !!&self.consumers.contains_key(&topic) {
+            println!("About to unconsume from {:?}", topic);
+            let removed_key = self.consumers.remove(&topic);
+            removed_key.unwrap().abort();
+        }
     }
 
     fn new() -> Self {
