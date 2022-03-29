@@ -20,7 +20,7 @@ async fn run_async_processor(
         .set("bootstrap.servers", &brokers)
         .set("enable.partition.eof", "false")
         .set("session.timeout.ms", "6000")
-        .set("enable.auto.commit", "false")
+        .set("enable.auto.commit", "true")
         .create()
         .expect("Consumer creation failed");
 
