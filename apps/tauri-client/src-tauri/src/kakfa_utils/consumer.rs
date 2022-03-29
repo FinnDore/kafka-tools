@@ -31,8 +31,6 @@ async fn run_async_processor(
     // Create the outer pipeline on the message stream.
     let stream_processor = consumer.stream().try_for_each(|borrowed_message| {
         let msg = borrowed_message.detach();
-        //   std::str::from_utf8(
-
         let payload = std::str::from_utf8(msg.payload().unwrap()).unwrap();
         let topic = msg.topic();
 
@@ -56,7 +54,6 @@ async fn run_async_processor(
 pub trait KafkaConsumer {
     fn consume_topic(&mut self, topic: String, window: tauri::Window);
     fn un_consume_topic(&mut self, topic: String);
-    // fn get_subs(&self) -> &Vec<String>;
     fn new() -> Self;
 }
 
