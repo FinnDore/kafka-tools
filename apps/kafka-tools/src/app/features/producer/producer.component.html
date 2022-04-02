@@ -1,4 +1,4 @@
-<div class="terminal" class="terminal">
+<div class="terminal" class="terminal" #terminal>
     <kafka-tools-message *ngFor="let message of messages" [message]="message">
     </kafka-tools-message>
     <div #terminalFooter></div>
@@ -8,7 +8,7 @@
     <div class="message-input">
         <input
             #input
-            (keyup.enter)="sendMessage(topicNameInput.value, input.value)"
+            (keydown.enter)="sendMessage(topicNameInput.value, input.value)"
         />
         <button
             mat-button

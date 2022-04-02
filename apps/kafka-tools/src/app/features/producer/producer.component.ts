@@ -20,8 +20,10 @@ export class ProducerComponent {
     messages: KafkaMessage[] = [];
     currentTopic: string | null = null;
 
+    @ViewChild('terminal', { read: ElementRef })
+    terminal!: ElementRef<HTMLDivElement>;
     @ViewChild('terminalFooter', { read: ElementRef })
-    terminalFooter: ElementRef<HTMLDivElement> | null = null;
+    terminalFooter!: ElementRef<HTMLDivElement>;
 
     /**
      * constructor for the producer component
@@ -86,10 +88,18 @@ export class ProducerComponent {
             'background: #8000ff; color: white; font-weight: bolder',
             `: ${m.payload}`
         );
-        console.log(m.timeStamp);
-
         this.messages.push(m);
         this.ref.detectChanges();
-        this.terminalFooter?.nativeElement.scrollIntoView({});
+        const terminal = this.terminal.nativeElement;
+
+        if (
+            Math.abs(
+                terminal.scrollHeight -
+                    terminal.clientHeight -
+                    terminal.scrollTop
+            ) < 50
+        ) {
+            this.terminalFooter.nativeElement.scrollIntoView({});
+        }
     }
 }
