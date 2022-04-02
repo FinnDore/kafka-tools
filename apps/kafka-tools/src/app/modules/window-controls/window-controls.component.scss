@@ -1,4 +1,4 @@
-@import '~/src/_styles/mixins/theme.mixin.scss';
+@import '~/src/_styles/theme.scss';
 
 .container {
     width: 100%;
@@ -37,7 +37,7 @@
     }
 }
 
-::ng-deep .close:hover {
+:host ::ng-deep .close:hover {
     transition: background 0.25s ease-out;
-    @include theme(background, warn);
+    background: var(--theme-warn);
 }

@@ -3,7 +3,7 @@
     windows_subsystem = "windows"
 )]
 
-use crate::kakfa_utils::consumer::{ConsumerManager, KafkaConsumer};
+use crate::kakfa_utils::consumer::consumer::{ConsumerManager, KafkaConsumer};
 use crate::kakfa_utils::producer::{KafkaProducer, Producer};
 
 use rdkafka::util::get_rdkafka_version;
@@ -27,9 +27,13 @@ async fn send_kafka_message(
 async fn subscribe_to_topic(
     consumer_manager: State<'_, Mutex<ConsumerManager>>,
     topic: String,
+    broker: String,
     app: tauri::Window,
 ) -> Result<(), ()> {
-    consumer_manager.lock().unwrap().consume_topic(topic, app);
+    consumer_manager
+        .lock()
+        .unwrap()
+        .consume_topic(topic, broker, app);
     Ok(())
 }
 

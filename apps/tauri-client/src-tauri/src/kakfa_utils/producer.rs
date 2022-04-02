@@ -29,18 +29,18 @@ impl KafkaProducer for Producer {
     /// my_kafka_producer.send_kafka_message("test-topic", "My message!")
     /// ```
     async fn send_kafka_message(&self, topic: String, message: String) {
-        let delivery_status = &self
+        &self
             .producer
             .send(
                 FutureRecord::to(&topic)
                     .payload(&message)
                     .key(&format!("Key"))
-                    .headers(OwnedHeaders::new().add("header_key", "header_value")),
+                    .headers(
+                        OwnedHeaders::new().add("header_key", "header_value"),
+                    ),
                 Duration::from_secs(0),
             )
             .await;
-
-        println!("Future completed. Result: {:?}", delivery_status);
     }
 
     fn new(broker: &str) -> Self {

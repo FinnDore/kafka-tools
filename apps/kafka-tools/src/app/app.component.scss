@@ -1,5 +1,3 @@
-@import '~/src/_styles/theme.scss';
-
 :host .content {
     height: 100%;
     width: 100%;
@@ -8,7 +6,8 @@
 
     & > ::ng-deep :nth-child(3) {
         height: 100%;
-        display: block;
+        max-height: 100%;
+        overflow: auto;
     }
 }
 
@@ -19,4 +18,16 @@ img {
 
 kafka-tools-window-controls {
     width: 100%;
+}
+
+::ng-deep * {
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--theme-text);
+        border-radius: 10px;
+    }
 }

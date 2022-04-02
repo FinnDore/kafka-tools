@@ -1,20 +1,21 @@
-<mat-form-field appearance="outline">
-    <mat-label>TopicName</mat-label>
-    <input matInput #topicNameInput value="topic-test" />
-</mat-form-field>
-<mat-form-field appearance="outline">
-    <mat-label>Message</mat-label>
+<div class="terminal" class="terminal">
+    <kafka-tools-message *ngFor="let message of messages" [message]="message">
+    </kafka-tools-message>
+    <div #terminalFooter></div>
+</div>
+
+<div class="footer">
     <input matInput #input />
-</mat-form-field>
-<button
-    mat-raised-button
-    (click)="sendMessage(topicNameInput.value, input.value)"
->
-    Send message
-</button>
-<button mat-raised-button (click)="listenToTopic(topicNameInput.value)">
-    Listen
-</button>
-<button mat-raised-button (click)="unsubscribeToTopic(topicNameInput.value)">
-    unlisten
-</button>
+    <button
+        mat-raised-button
+        (click)="sendMessage(topicNameInput.value, input.value)"
+    >
+        Send message
+    </button>
+    <input
+        matInput
+        #topicNameInput
+        value="topic-test"
+        (change)="listenToTopic(topicNameInput.value)"
+    />
+</div>

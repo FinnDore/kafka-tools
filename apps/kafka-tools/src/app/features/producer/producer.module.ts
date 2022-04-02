@@ -5,9 +5,12 @@ import { ProducerRoutingModule } from './producer-routing.module';
 import { ProducerComponent } from './producer.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MessageComponent } from './message/message.component';
 @NgModule({
     imports: [
         CommonModule,
+        ReactiveFormsModule,
 
         // Angular material
         MatFormFieldModule,
@@ -17,7 +20,7 @@ import { MatInputModule } from '@angular/material/input';
         // Local
         ProducerRoutingModule,
     ],
-    declarations: [ProducerComponent],
+    declarations: [ProducerComponent, MessageComponent],
     exports: [ProducerComponent],
 })
 export class ProducerModule {}
