@@ -8,6 +8,7 @@
     <div class="message-input">
         <input
             #input
+            placeholder="Kafka message"
             (keydown.enter)="sendMessage(topicNameInput.value, input.value)"
         />
         <button

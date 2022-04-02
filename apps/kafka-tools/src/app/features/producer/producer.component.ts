@@ -99,7 +99,7 @@ export class ProducerComponent {
                     terminal.scrollTop
             ) < 50
         ) {
-            this.terminalFooter.nativeElement.scrollIntoView({});
+            this.terminalFooter.nativeElement.scrollIntoView();
         }
     }
 }
