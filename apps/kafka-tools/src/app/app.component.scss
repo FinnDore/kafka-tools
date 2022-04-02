@@ -37,7 +37,12 @@ kafka-tools-window-controls {
         background: var(--theme-primary);
     }
 
+    --border-radius: 3px;
     input {
         caret-color: var(--theme-primary);
+    }
+
+    button {
+        border-radius: var(--border-radius) !important;
     }
 }

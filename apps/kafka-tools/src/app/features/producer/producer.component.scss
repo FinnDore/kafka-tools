@@ -17,15 +17,13 @@
     height: 3.25em;
     display: flex;
     margin: 1rem;
+    border-radius: var(--border-radius) !important;
+    overflow: hidden;
 }
 
 .message-input {
-    width: 80%;
-
-    border-radius: 5px;
+    flex: 1;
     margin-right: 0.5rem;
-
-    overflow: hidden;
 
     &,
     input,
@@ -60,6 +58,7 @@
         width: max-content;
         font-weight: bolder;
         color: var(--theme-warn);
+        font-variant: all-small-caps;
     }
 
     input {
