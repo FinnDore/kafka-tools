@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { KafkaMessage } from '../../../../_interfaces/kafka-message.model';
 
 @Component({
     selector: 'kafka-tools-message',
@@ -7,5 +8,6 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent {
-    @Input() message: unknown;
+    @Input()
+    message!: KafkaMessage;
 }

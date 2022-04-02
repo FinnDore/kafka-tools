@@ -1,1 +1,5 @@
-{{ message }}
+<div class="time-stamp">{{ message.timeStamp | dfnsFormat: 'P' }}:</div>
+
+<div class="payload">
+    {{ message.payload }}
+</div>

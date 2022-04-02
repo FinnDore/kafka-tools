@@ -5,17 +5,24 @@
 </div>
 
 <div class="footer">
-    <input matInput #input />
-    <button
-        mat-raised-button
-        (click)="sendMessage(topicNameInput.value, input.value)"
-    >
-        Send message
-    </button>
-    <input
-        matInput
-        #topicNameInput
-        value="topic-test"
-        (change)="listenToTopic(topicNameInput.value)"
-    />
+    <div class="message-input">
+        <input
+            #input
+            (keyup.enter)="sendMessage(topicNameInput.value, input.value)"
+        />
+        <button
+            mat-button
+            (click)="sendMessage(topicNameInput.value, input.value)"
+        >
+            send
+        </button>
+    </div>
+    <div class="topic-input">
+        <div class="topic">topic :</div>
+        <input
+            #topicNameInput
+            value="topic-test"
+            (change)="listenToTopic(topicNameInput.value)"
+        />
+    </div>
 </div>

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { invoke } from '@tauri-apps/api';
 import { Event, listen } from '@tauri-apps/api/event';
+import { KafkaMessage } from '../../../_interfaces/kafka-message.model';
 @Component({
     selector: 'kafka-tools-producer',
     templateUrl: './producer.component.html',
@@ -16,7 +17,7 @@ import { Event, listen } from '@tauri-apps/api/event';
 export class ProducerComponent {
     readonly broker = 'localhost:9092';
 
-    messages: unknown[] = [];
+    messages: KafkaMessage[] = [];
     currentTopic: string | null = null;
 
     @ViewChild('terminalFooter', { read: ElementRef })
@@ -74,8 +75,7 @@ export class ProducerComponent {
      * @param e the event to process
      */
     processMessage(e: Event<string>): void {
-        const m: { payload: string; topic: string; timeStamp: number } =
-            JSON.parse(e.payload);
+        const m: KafkaMessage = JSON.parse(e.payload);
 
         if (m.topic !== this.currentTopic) {
             return;
@@ -88,7 +88,7 @@ export class ProducerComponent {
         );
         console.log(m.timeStamp);
 
-        this.messages.push(m.payload);
+        this.messages.push(m);
         this.ref.detectChanges();
         this.terminalFooter?.nativeElement.scrollIntoView({});
     }

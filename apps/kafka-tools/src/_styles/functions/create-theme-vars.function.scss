@@ -1,13 +1,47 @@
 @use 'sass:map';
+@use 'sass:color';
 
 @mixin create-theme-vars($theme-colors: null) {
-    --theme-primary: #{map.get($theme-colors, primary)};
-    --theme-accent: #{map.get($theme-colors, accent)};
-    --theme-warn: #{map.get($theme-colors, warn)};
-    --theme-success: #{map.get($theme-colors, success)};
-    --theme-attention: #{map.get($theme-colors, attention)};
-    --theme-background: #{map.get($theme-colors, background)};
-    --theme-foreground: #{map.get($theme-colors, foreground)};
-    --theme-text: #{map.get($theme-colors, text)};
-    --theme-shadow: #{map.get($theme-colors, shadow)};
+    $colors: (
+        primary,
+        accent,
+        warn,
+        success,
+        attention,
+        background,
+        text,
+        shadow
+    );
+
+    @each $current-color in $colors {
+        $is-dark: map.get($theme-colors, is-dark);
+        $theme-color: map.get($theme-colors, $current-color);
+        --theme-#{$current-color}: #{$theme-color};
+        @include make-variants($theme-color, $current-color, $is-dark);
+    }
+}
+
+@mixin make-variants($base-color, $color-name, $is-dark) {
+    @for $i from 0 through 100 {
+        $lighten-offset: null;
+        $darken-offset: null;
+
+        @if $is-dark {
+            $lighten-offset: 0%;
+            $darken-offset: -100%;
+        } @else {
+            $lighten-offset: -100%;
+            $darken-offset: 0%;
+        }
+
+        --theme-#{$color-name}-light-#{$i}: #{color.scale(
+                $base-color,
+                $lightness: $i + $lighten-offset
+            )};
+
+        --theme-#{$color-name}-dark-#{$i}: #{color.scale(
+                $base-color,
+                $lightness: $i + $darken-offset
+            )};
+    }
 }

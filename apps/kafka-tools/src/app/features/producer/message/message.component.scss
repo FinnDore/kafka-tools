@@ -1,3 +1,13 @@
 :host {
-  display: block;
+    display: flex;
+
+    max-width: 100%;
+}
+
+.time-stamp {
+    margin-right: 1rem;
+}
+
+.payload {
+    word-break: break-all;
 }
