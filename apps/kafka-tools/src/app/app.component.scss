@@ -23,21 +23,24 @@ kafka-tools-window-controls {
 }
 
 ::ng-deep * {
+    --border-radius: 3px;
+
     /* Chrome, Edge, and Safari */
     &::-webkit-scrollbar {
-        width: 8px;
+        width: 16px;
     }
 
     &::-webkit-scrollbar-thumb {
         background: var(--theme-text);
-        border-radius: 10px;
+        border-radius: var(--border-radius);
+        background-clip: padding-box;
+        border: 5px solid rgb(255 255 255 / 0%);
     }
 
     &::selection {
         background: var(--theme-primary);
     }
 
-    --border-radius: 3px;
     input {
         caret-color: var(--theme-primary);
     }
