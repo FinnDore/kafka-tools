@@ -6,7 +6,7 @@ env:
 
 jobs:
   commit-checks:
-    runs-on: windows-2022
+    runs-on: windows-2019
     if: ${{ github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v3
@@ -54,8 +54,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      # - name: Get latest CMake and ninja
-      # uses: lukka/get-cmake@v3.22.2
       - name: setup node
         uses: actions/setup-node@v3
         with:
