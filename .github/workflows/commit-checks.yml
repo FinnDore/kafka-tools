@@ -55,6 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Get latest CMake and ninja
+        uses: lukka/get-cmake@v3.22.2
       - name: setup node
         uses: actions/setup-node@v3
         with:
@@ -74,5 +75,4 @@ jobs:
 
         run: npx nx build kafka-tools
       - name: build tauri-client
-        uses: lukka/get-cmake@v3.22.2
         run: npx nx build tauri-client
