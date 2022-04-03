@@ -1,5 +1,5 @@
 {
-    "root": "workspace",
+    "root": "../",
     "sourceRoot": "workspace",
     "projectType": "application",
     "targets": {
