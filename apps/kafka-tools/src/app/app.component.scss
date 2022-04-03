@@ -8,7 +8,8 @@
 
     & > ::ng-deep :nth-child(3) {
         height: 100%;
-        display: block;
+        max-height: 100%;
+        overflow: auto;
     }
 }
 
@@ -19,4 +20,32 @@ img {
 
 kafka-tools-window-controls {
     width: 100%;
+}
+
+::ng-deep * {
+    --border-radius: 3px;
+
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+        width: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--theme-text);
+        border-radius: var(--border-radius);
+        background-clip: padding-box;
+        border: 5px solid rgb(255 255 255 / 0%);
+    }
+
+    &::selection {
+        background: var(--theme-primary);
+    }
+
+    input {
+        caret-color: var(--theme-primary);
+    }
+
+    button {
+        border-radius: var(--border-radius) !important;
+    }
 }

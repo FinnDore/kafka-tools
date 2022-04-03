@@ -6,7 +6,7 @@ env:
 
 jobs:
   commit-checks:
-    runs-on: windows-2022
+    runs-on: windows-2019
     if: ${{ github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
       - run: npx nx-cloud stop-all-agents
 
   agents:
-    runs-on: windows-2022
+    runs-on: windows-2019
     name: build test lint
     timeout-minutes: 60
     strategy:
@@ -46,7 +46,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [macos-latest, ubuntu-latest, windows-2019]
     env:
       NX_CLOUD_DISTRIBUTED_EXECUTION: false
 
@@ -70,6 +70,7 @@ jobs:
       - name: npm install
         run: npm install
       - name: build kafka-tools
+
         run: npx nx build kafka-tools
       - name: build tauri-client
         run: npx nx build tauri-client

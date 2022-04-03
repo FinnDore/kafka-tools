@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    max-width: 100%;
+
+    &:hover {
+        background: var(--theme-background-light-3);
+    }
+}
+
+.time-stamp {
+    margin-right: 0.5rem;
+    color: var(--theme-success);
+    width: max-content;
+}
+
+.payload {
+    word-break: break-all;
+    flex: 1;
+}

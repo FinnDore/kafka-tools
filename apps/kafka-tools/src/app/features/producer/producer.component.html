@@ -1,0 +1,29 @@
+<div class="terminal" class="terminal" #terminal>
+    <kafka-tools-message *ngFor="let message of messages" [message]="message">
+    </kafka-tools-message>
+    <div #terminalFooter></div>
+</div>
+
+<div class="footer">
+    <div class="message-input">
+        <input
+            #input
+            placeholder="Kafka message"
+            (keydown.enter)="sendMessage(topicNameInput.value, input.value)"
+        />
+        <button
+            mat-button
+            (click)="sendMessage(topicNameInput.value, input.value)"
+        >
+            send
+        </button>
+    </div>
+    <div class="topic-input">
+        <div class="topic">topic :</div>
+        <input
+            #topicNameInput
+            value="topic-test"
+            (change)="listenToTopic(topicNameInput.value)"
+        />
+    </div>
+</div>
