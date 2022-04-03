@@ -46,15 +46,11 @@ jobs:
       fail-fast: false
 
       matrix:
-        include:
-          - os: macos-latest
-          - os: ubuntu-latest
-          - os: windows-latest
-            features: cmake-build
+        platform: [macos-latest, ubuntu-latest, windows-latest]
     env:
       NX_CLOUD_DISTRIBUTED_EXECUTION: false
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.platform }}
 
     steps:
       - uses: actions/checkout@v3
