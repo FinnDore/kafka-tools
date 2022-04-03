@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/FinnDore/kafka-tools/compare/v0.1.6...v0.2.0) (2022-04-03)
+
+
+
 ## [0.1.6](https://github.com/FinnDore/kafka-tools/compare/v0.1.5...v0.1.6) (2022-03-17)
 
 

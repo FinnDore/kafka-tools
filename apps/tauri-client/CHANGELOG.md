@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/FinnDore/kafka-tools/compare/v0.1.6...v0.2.0) (2022-04-03)
+
+
+### Features
+
+* **kafka-tools:** added the ability to consume and produce from and to a topic ([#37](https://github.com/FinnDore/kafka-tools/issues/37)) ([86d9f9c](https://github.com/FinnDore/kafka-tools/commit/86d9f9c019670db761016df2226fa71733579b21))
+
+
+
 ## [0.1.6](https://github.com/FinnDore/kafka-tools/compare/v0.1.5...v0.1.6) (2022-03-17)
 
 
