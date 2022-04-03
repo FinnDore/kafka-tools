@@ -26,7 +26,7 @@ jobs:
       - run: npx nx-cloud stop-all-agents
 
   agents:
-    runs-on: windows-2022
+    runs-on: windows-2019
     name: build test lint
     timeout-minutes: 60
     strategy:
