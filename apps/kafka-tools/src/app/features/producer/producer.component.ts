@@ -88,17 +88,18 @@ export class ProducerComponent {
             'background: #8000ff; color: white; font-weight: bolder',
             `: ${m.payload}`
         );
-        this.messages.push(m);
-        this.ref.detectChanges();
         const terminal = this.terminal.nativeElement;
-
-        if (
+        const should_scroll =
             Math.abs(
                 terminal.scrollHeight -
                     terminal.clientHeight -
                     terminal.scrollTop
-            ) < 50
-        ) {
+            ) < 1;
+        this.messages.push(m);
+
+        this.ref.detectChanges();
+
+        if (should_scroll) {
             this.terminalFooter.nativeElement.scrollIntoView();
         }
     }

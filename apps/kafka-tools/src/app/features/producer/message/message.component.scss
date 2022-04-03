@@ -1,6 +1,10 @@
 :host {
     display: flex;
     max-width: 100%;
+
+    &:hover {
+        background: var(--theme-background-light-3);
+    }
 }
 
 .time-stamp {
