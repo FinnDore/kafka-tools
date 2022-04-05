@@ -1,6 +1,0 @@
-@import '~/src/_styles/functions/create-theme.function.scss';
-@import '~/src/_styles/themes/dark/dark.pallette.scss';
-
-$dark-theme: create-theme($dark-pallette);
-
-$dark-theme-export: (dark, $dark-theme, $dark-pallette);

@@ -1,0 +1,11 @@
+@import '~/src/shared/_styles/themes/dark/dark.pallette.scss';
+@import '~/src/shared/_styles/themes/light/light.pallette.scss';
+@import '~/src/shared/_styles/themes/git-hub/git-hub.pallette.scss';
+@import '~/src/shared/_styles/themes/pop-n-lock/pop-n-lock.pallette.scss';
+
+$pallettes: (
+    (dark, $dark-pallette),
+    (light, $light-pallette),
+    (git-hub, $git-hub-pallette),
+    (pop-n-lock, $pop-n-lock-pallette)
+);

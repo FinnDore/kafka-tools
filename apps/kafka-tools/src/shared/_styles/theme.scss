@@ -8,10 +8,10 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@import '~/src/_styles/font-config.scss';
-@import '~/src/_styles/functions/create-theme-vars.function.scss';
+@import '~/src/shared/_styles/font-config.scss';
+@import '~/src/shared/_styles/functions/create-theme-vars.function.scss';
 
-@import '~/src/_styles/themes';
+@import '~/src/shared/_styles/themes';
 
 .show-if-dark,
 .show-if-light {

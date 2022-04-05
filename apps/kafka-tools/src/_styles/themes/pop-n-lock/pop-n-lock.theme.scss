@@ -1,6 +1,0 @@
-@import '~/src/_styles/functions/create-theme.function.scss';
-@import '~/src/_styles/themes/pop-n-lock/pop-n-lock.pallette.scss';
-
-$pop-n-lock-theme: create-theme($pop-n-lock-pallette);
-
-$pop-n-lock-theme-export: (pop-n-lock, $pop-n-lock-theme, $pop-n-lock-pallette);

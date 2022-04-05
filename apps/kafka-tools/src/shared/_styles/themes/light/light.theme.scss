@@ -1,0 +1,6 @@
+@import '~/src/shared/_styles/functions/create-theme.function.scss';
+@import '~/src/shared/_styles/themes/light/light.pallette.scss';
+
+$light-theme: create-theme($light-pallette);
+
+$light-theme-export: (light, $light-theme, $light-pallette);

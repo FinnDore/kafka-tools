@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { invoke } from '@tauri-apps/api';
 import { Event, listen } from '@tauri-apps/api/event';
-import { KafkaMessage } from '../../../_interfaces/kafka-message.model';
+import { KafkaMessage } from '../../../shared/_interfaces/kafka-message.model';
 @Component({
     selector: 'kafka-tools-producer',
     templateUrl: './producer.component.html',
