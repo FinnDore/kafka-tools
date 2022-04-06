@@ -25,10 +25,6 @@ export class ProducerComponent {
     @ViewChild('terminalFooter', { read: ElementRef })
     terminalFooter!: ElementRef<HTMLDivElement>;
 
-    /**
-     * constructor for the producer component
-     * @param ref the CD ref
-     */
     constructor(private ref: ChangeDetectorRef) {
         this.listenForEvent();
         this.listenToTopic('topic-test');

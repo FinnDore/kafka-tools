@@ -59,6 +59,9 @@
                             "FunctionDeclaration": true,
                             "MethodDefinition": true,
                             "ClassDeclaration": false
+                        },
+                        "exempt": {
+                            "exemptEmptyConstructors": true
                         }
                     }
                 ]
