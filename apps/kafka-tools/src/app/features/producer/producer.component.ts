@@ -3,16 +3,17 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
-    ViewChild,
+    ViewChild
 } from '@angular/core';
 import { invoke } from '@tauri-apps/api';
 import { Event, listen } from '@tauri-apps/api/event';
 import { KafkaMessage } from '../../../shared/_interfaces/kafka-message.model';
+import { ToasterStore } from '../../modules/toast';
 @Component({
     selector: 'kafka-tools-producer',
     templateUrl: './producer.component.html',
     styleUrls: ['./producer.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProducerComponent {
     readonly broker = 'localhost:9092';
@@ -25,9 +26,18 @@ export class ProducerComponent {
     @ViewChild('terminalFooter', { read: ElementRef })
     terminalFooter!: ElementRef<HTMLDivElement>;
 
-    constructor(private ref: ChangeDetectorRef) {
+    constructor(
+        private ref: ChangeDetectorRef,
+        private toastStore: ToasterStore
+    ) {
         this.listenForEvent();
         this.listenToTopic('topic-test');
+    }
+
+    popToast() {
+        this.toastStore.pop({
+            content: 'aaa'
+        });
     }
 
     /**
@@ -52,7 +62,7 @@ export class ProducerComponent {
     }
 
     /**
-     * unlistens to a kafka topic
+     * Unlistens to a kafka topic
      * @param topic the topic to listen to
      */
     unsubscribeToTopic(topic: string): void {
@@ -79,11 +89,6 @@ export class ProducerComponent {
             return;
         }
 
-        console.log(
-            `%c KAFKA-MESSAGE - ${m.topic} `,
-            'background: #8000ff; color: white; font-weight: bolder',
-            `: ${m.payload}`
-        );
         const terminal = this.terminal.nativeElement;
         const should_scroll =
             Math.abs(

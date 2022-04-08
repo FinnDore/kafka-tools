@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormatPipeModule } from 'ngx-date-fns';
+import { ToastModule } from '../../modules/toast';
 import { MessageComponent } from './message/message.component';
 import { ProducerRoutingModule } from './producer-routing.module';
 import { ProducerComponent } from './producer.component';
@@ -21,6 +22,7 @@ import { ProducerComponent } from './producer.component';
 
         // Local
         ProducerRoutingModule,
+        ToastModule,
     ],
     declarations: [ProducerComponent, MessageComponent],
     exports: [ProducerComponent],

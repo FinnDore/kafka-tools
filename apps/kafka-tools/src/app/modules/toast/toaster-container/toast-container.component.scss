@@ -1,0 +1,10 @@
+:host {
+    display: block;
+    position: absolute;
+}
+
+:host,
+.toasts {
+    width: 100%;
+    height: 100%;
+}

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { WindowControlsModule } from './modules/window-controls/window-controls.module';
+import { ToastModule } from './modules/toast';
 
 @NgModule({
     imports: [
@@ -15,9 +16,10 @@ import { WindowControlsModule } from './modules/window-controls/window-controls.
         // Local modules
         AppRoutingModule,
         WindowControlsModule,
+        ToastModule
     ],
     declarations: [AppComponent],
     providers: [],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
