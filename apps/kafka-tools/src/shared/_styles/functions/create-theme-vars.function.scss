@@ -25,6 +25,7 @@
     @for $i from 0 through 100 {
         $lighten-offset: null;
         $darken-offset: null;
+        $alpha-offset: -100%;
 
         @if $is-dark {
             $lighten-offset: 0%;
@@ -42,6 +43,11 @@
         --theme-#{$color-name}-dark-#{$i}: #{color.scale(
                 $base-color,
                 $lightness: $i + $darken-offset
+            )};
+
+        --theme-#{$color-name}-alpha-#{$i}: #{color.scale(
+                $base-color,
+                $alpha: $i + $alpha-offset
             )};
     }
 }

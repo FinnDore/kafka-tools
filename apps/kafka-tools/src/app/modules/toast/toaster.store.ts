@@ -28,14 +28,14 @@ export class ToasterStore extends ComponentStore<ToasterStoreState> {
      * Pops a toast with the given options
      * @param popOptions the options to pop the toast with
      */
-    readonly pop = this.effect((source$: Observable<PopOptions>) =>
+    public readonly pop = this.effect((source$: Observable<PopOptions>) =>
         source$.pipe(
             mergeMap(options => {
                 const { duration } = options;
                 const toastId = this._pop(options);
 
                 if (duration) {
-                    return of(setTimeout(() => this._unPop(toastId), duration));
+                    return of(setTimeout(() => this.unPop(toastId), duration));
                 }
 
                 return of(null);
@@ -47,7 +47,7 @@ export class ToasterStore extends ComponentStore<ToasterStoreState> {
      * Removes a toast with the given id
      * @param toastId the id of the toast to be removed
      */
-    private _unPop(toastId: number) {
+    public unPop(toastId: number) {
         const index = this.activeToasts.findIndex(x => x.id === toastId);
 
         if (index === -1) {
@@ -70,6 +70,7 @@ export class ToasterStore extends ComponentStore<ToasterStoreState> {
 
         this.activeToasts.push(toastOptions);
         this.toastEvents$.next(ToastEvent.ACTIVE_TOAST_UPDATE);
+        console.log(this.activeToasts);
         return this.toastRef;
     }
 

@@ -1,5 +1,12 @@
 <div class="toasts">
     <kafka-tools-toast
-        *ngFor="let toast of toastService.activeToasts; trackBy: trackByFn"
+        *ngFor="
+            let toastOptions of toastService.activeToasts;
+            index as i;
+            trackBy: trackByFn
+        "
+        [options]="toastOptions"
+        (click)="closeToast(toastOptions.id)"
+        [style.transform]="'translateY(-' + i * 100 + '%)'"
     ></kafka-tools-toast>
 </div>

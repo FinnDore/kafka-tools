@@ -1,8 +1,8 @@
+import { PopOptions } from './pop-options.model';
+
 /**
  * Options for a individual toast
  */
-export interface ToastOptions {
+export interface ToastOptions extends PopOptions {
     id: number;
-    duration?: number | null;
-    content: string;
 }

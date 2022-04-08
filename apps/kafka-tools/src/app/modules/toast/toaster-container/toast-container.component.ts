@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component
+} from '@angular/core';
+import { takeUntil, tap } from 'rxjs';
+import { Unsubscribe } from '../../unsubscribe/unsubscribe.component';
 import { ToasterStore } from '../toaster.store';
 import { ToastOptions } from '../_models/toast-options.model';
 
@@ -6,10 +12,32 @@ import { ToastOptions } from '../_models/toast-options.model';
     selector: 'kafka-tools-toast-container',
     templateUrl: './toast-container.component.html',
     styleUrls: ['./toast-container.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ToasterContainerComponent {
-    constructor(public toastService: ToasterStore) {}
+export class ToasterContainerComponent extends Unsubscribe {
+    /**
+     * Call cd on toast events
+     */
+    readonly toastEvents$ = this.toastService.toastEvents$.pipe(
+        tap(() => this.ref.detectChanges()),
+        takeUntil(this.onDestroy$)
+    );
+
+    constructor(
+        private ref: ChangeDetectorRef,
+        public toastService: ToasterStore
+    ) {
+        super();
+        this.toastEvents$.subscribe();
+    }
+
+    /**
+     * Closes the toast with the given id
+     * @param id the id of the toast to close
+     */
+    closeToast(id: number): void {
+        this.toastService.unPop(id);
+    }
 
     /**
      * Track by function for the toasts

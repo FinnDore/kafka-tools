@@ -4,7 +4,8 @@ $dark-pallette: (
     warn: red,
     attention: #ff3c22,
     success: #00ff9d,
-    background: #0e0e0e,
+    background: black,
+    // background: #0e0e0e,
     text: white,
     shadow: black,
     colors: (
@@ -13,7 +14,7 @@ $dark-pallette: (
         3: #ff3c22,
         4: #7bff00,
         5: #ffee00,
-        6: #929292,
+        6: #929292
     ),
-    is-dark: true,
+    is-dark: true
 );

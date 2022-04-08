@@ -1,10 +1,40 @@
 :host {
-    display: block;
+    display: flex;
     position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 100vw;
+    z-index: 100;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 :host,
 .toasts {
-    width: 100%;
-    height: 100%;
+    pointer-events: none;
+}
+
+.toasts {
+    width: min(30rem, 100vw);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-bottom: 4.5rem;
+    overflow: visible;
+}
+
+kafka-tools-toast {
+    position: absolute;
+    transition: transform 250ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    animation: fade-in-toast 350ms;
+}
+
+@keyframes fade-in-toast {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

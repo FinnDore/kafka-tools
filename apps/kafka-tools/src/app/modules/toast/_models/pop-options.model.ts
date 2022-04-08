@@ -1,7 +1,11 @@
+import { ToastLevel } from '../_enums/toast-level';
+
 /**
  * Options for popping a toast
  */
 export interface PopOptions {
-    duration?: number | null;
+    level: ToastLevel;
     content: string;
+    title?: string | null;
+    duration?: number | null;
 }

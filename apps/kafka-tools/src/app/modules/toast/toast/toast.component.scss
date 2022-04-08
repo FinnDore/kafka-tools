@@ -1,0 +1,75 @@
+@mixin toast-shadow($color-name: null) {
+    box-shadow: 0 0 2.2px var(--theme-#{$color-name}-alpha-1),
+        0 0 5.3px var(--theme-#{$color-name}-alpha-1),
+        0 0 10px var(--theme-#{$color-name}-alpha-2),
+        0 0 17.9px var(--theme-#{$color-name}-alpha-2),
+        0 0 33.4px var(--theme-#{$color-name}-alpha-3),
+        0 0 80px var(--theme-#{$color-name}-alpha-7);
+}
+
+.kafka-tool-toast-component {
+    pointer-events: all;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 20rem;
+    min-height: 4rem;
+    margin: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    border: 0.25px solid var(--theme-background-light-35);
+
+    &:hover {
+        transform: scale(1.1);
+        transition: transform 250ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    ::ng-deep .dark-theme & {
+        background-color: var(--theme-background-light-20);
+    }
+
+    ::ng-deep .light-theme & {
+        background-color: var(--theme-background);
+    }
+}
+
+.title {
+    width: 7.5rem;
+    margin-left: 1rem;
+    margin-right: 0.75rem;
+
+    font-size: 1.25rem;
+    font-weight: bolder;
+    font-variant: all-small-caps;
+}
+
+.body {
+    margin-right: 1rem;
+}
+
+.SUCCESS {
+    @include toast-shadow(success);
+    .title {
+        color: var(--theme-success);
+    }
+}
+
+.ERROR {
+    @include toast-shadow(warn);
+    .title {
+        color: var(--theme-warn);
+    }
+}
+
+.ATTENTION {
+    @include toast-shadow(attention);
+    .title {
+        color: var(--theme-attention);
+    }
+}
+
+.INFO {
+    @include toast-shadow(primary);
+    .title {
+        color: var(--theme-primary);
+    }
+}
