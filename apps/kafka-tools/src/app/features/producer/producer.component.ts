@@ -39,7 +39,6 @@ export class ProducerComponent {
     }
 
     popToast(level: ToastLevel = ToastLevel.SUCCESS) {
-        console.log(222);
         this.toastStore.pop({
             content:
                 'Connected to broker. You can now send messages to a topic of your choice.',
