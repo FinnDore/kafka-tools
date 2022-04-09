@@ -27,14 +27,4 @@
 kafka-tools-toast {
     position: absolute;
     transition: transform 250ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    animation: toast-pop-animation 200ms ease-out;
-}
-
-@keyframes toast-pop-animation {
-    0% {
-        clip-path: circle(25%);
-    }
-    100% {
-        clip-path: circle(75%);
-    }
 }

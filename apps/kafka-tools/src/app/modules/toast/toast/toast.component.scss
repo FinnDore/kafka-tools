@@ -9,26 +9,35 @@
 
 .kafka-tool-toast-component {
     pointer-events: all;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    min-width: 20rem;
-    min-height: 4rem;
+
     margin: 0.5rem 1rem;
-    border-radius: var(--border-radius);
     border: 0.25px solid var(--theme-background-light-35);
+
+    &,
+    .toast {
+        border-radius: var(--border-radius);
+    }
+
+    .toast {
+        min-width: 20rem;
+        min-height: 4rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        animation: toast-pop-animation 200ms ease-out;
+
+        ::ng-deep .dark-theme & {
+            background-color: var(--theme-background-light-20);
+        }
+
+        ::ng-deep .light-theme & {
+            background-color: var(--theme-background);
+        }
+    }
 
     &:hover {
         transform: scale(1.1);
-        transition: transform 250ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    }
-
-    ::ng-deep .dark-theme & {
-        background-color: var(--theme-background-light-20);
-    }
-
-    ::ng-deep .light-theme & {
-        background-color: var(--theme-background);
+        transition: transform 150ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
 }
 
@@ -71,5 +80,14 @@
     @include toast-shadow(primary);
     .title {
         color: var(--theme-primary);
+    }
+}
+
+@keyframes toast-pop-animation {
+    0% {
+        clip-path: circle(25% at 100%);
+    }
+    100% {
+        clip-path: circle(75%);
     }
 }
