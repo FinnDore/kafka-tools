@@ -45,18 +45,19 @@
 
 // Specific component overrides, pieces that are not in line with the general theming
 // Handle buttons appropriately, with respect to line-height
-.mat-raised-button,
-.mat-stroked-button,
-.mat-flat-button {
-    padding: 0 1.15em;
-    margin: 0 0.65em;
-    min-width: 3em;
-    line-height: 36.4px;
+::ng-deep {
+    button {
+        padding: 0 1.15em;
+        margin: 0 0.65em;
+        min-width: 3em;
+        font-size: 1.2rem !important;
 
-    text-transform: uppercase;
-}
+        text-transform: uppercase;
+        font-variant: all-small-caps !important;
+    }
 
-.mat-standard-chip {
-    padding: 0.5em 0.85em;
-    min-height: 2.5em;
+    .mat-standard-chip {
+        padding: 0.5em 0.85em;
+        min-height: 2.5em;
+    }
 }

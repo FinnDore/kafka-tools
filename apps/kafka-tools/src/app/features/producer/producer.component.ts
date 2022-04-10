@@ -17,7 +17,7 @@ import { ToasterStore, ToastLevel } from '../../modules/toast';
 })
 export class ProducerComponent {
     readonly broker = 'localhost:9092';
-
+    loading = false;
     messages: KafkaMessage[] = [];
     currentTopic: string | null = null;
 
@@ -51,8 +51,13 @@ export class ProducerComponent {
      * @param topic the topic to send the message to
      * @param message the message to send
      */
-    sendMessage(topic: string, message: string): void {
-        invoke('send_kafka_message', { topic, message });
+    async sendMessage(topic: string, message: string): Promise<void> {
+        this.loading = true;
+        this.ref.detectChanges();
+        const res = await invoke('send_kafka_message', { topic, message });
+        console.log(res);
+        this.loading = false;
+        this.ref.detectChanges();
     }
 
     /**
