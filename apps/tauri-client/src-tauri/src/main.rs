@@ -42,7 +42,11 @@ async fn unsubscribe_from_topic(
     consumer_manager: State<'_, Mutex<ConsumerManager>>,
     topic: String,
 ) -> Result<(), ()> {
-    consumer_manager.lock().unwrap().un_consume_topic(topic);
+    match consumer_manager.lock() {
+        Ok(mut m) => m.un_consume_topic(topic),
+        Err(_) => (),
+    }
+
     Ok(())
 }
 
