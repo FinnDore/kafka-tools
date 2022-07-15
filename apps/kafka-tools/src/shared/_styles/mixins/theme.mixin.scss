@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@import '~/src/_styles/themes/pallettes.scss';
+@import '~/src/shared/_styles/themes/pallettes.scss';
 
 @mixin theme($property: null, $key: null) {
     @each $pallette-values in $pallettes {

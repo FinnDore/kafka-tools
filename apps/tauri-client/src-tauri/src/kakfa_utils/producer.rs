@@ -9,7 +9,6 @@ pub trait KafkaProducer {
     async fn send_kafka_message(&self, topic: String, message: String);
     fn new(broker: &str) -> Self;
 }
-
 pub struct Producer {
     producer: FutureProducer,
 }
@@ -29,7 +28,7 @@ impl KafkaProducer for Producer {
     /// my_kafka_producer.send_kafka_message("test-topic", "My message!")
     /// ```
     async fn send_kafka_message(&self, topic: String, message: String) {
-        let _ = self
+        let result = self
             .producer
             .send(
                 FutureRecord::to(&topic)
@@ -41,6 +40,10 @@ impl KafkaProducer for Producer {
                 Duration::from_secs(0),
             )
             .await;
+
+        if result.is_err() {
+            println!("producer errored");
+        }
     }
 
     fn new(broker: &str) -> Self {

@@ -7,13 +7,13 @@ import { WindowControlsComponent } from './window-controls.component';
 @NgModule({
     declarations: [WindowControlsComponent],
     imports: [
-        //libs
+        // Libs
         CommonModule,
         FontAwesomeModule,
 
         // Angular material
-        MatButtonModule,
+        MatButtonModule
     ],
-    exports: [WindowControlsComponent],
+    exports: [WindowControlsComponent]
 })
 export class WindowControlsModule {}

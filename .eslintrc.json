@@ -30,39 +30,6 @@
             "files": ["*.js", "*.jsx"],
             "extends": ["plugin:@nrwl/nx/javascript"],
             "rules": {}
-        },
-        {
-            "files": ["*.ts", "*.tsx"],
-            "rules": {
-                "@typescript-eslint/explicit-function-return-type": [2],
-                "valid-jsdoc": [
-                    2,
-                    {
-                        "requireParamDescription": true,
-                        "requireParamType": false,
-                        "requireReturn": false,
-                        "preferType": {
-                            "String": "string",
-                            "object": "object",
-                            "number": "number"
-                        },
-                        "prefer": {
-                            "return": "returns",
-                            "param": "param"
-                        }
-                    }
-                ],
-                "require-jsdoc": [
-                    2,
-                    {
-                        "require": {
-                            "FunctionDeclaration": true,
-                            "MethodDefinition": true,
-                            "ClassDeclaration": false
-                        }
-                    }
-                ]
-            }
         }
     ]
 }

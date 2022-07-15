@@ -20,8 +20,8 @@ jobs:
           node-version: 16
       - run: npm install
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build
-      - run: npx nx affected --target=test --parallel
+      - run: npx nx build kafka-tools
+      - run: npx nx affected --target=test
       - run: npx nx affected --target=lint
       - run: npx nx-cloud stop-all-agents
 

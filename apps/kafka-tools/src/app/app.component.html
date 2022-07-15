@@ -1,7 +1,12 @@
 <div
     class="mat-app-background mat-typography content"
-    [ngClass]="themes[currentThemeIndex] + '-theme'"
+    [ngClass]="
+        themes[currentThemeIndex] +
+        '-theme ' +
+        (isDark[currentThemeIndex] ? 'dark-theme' : 'light-theme')
+    "
 >
+    <kafka-tools-toast-container></kafka-tools-toast-container>
     <kafka-tools-window-controls
         (click)="shuffleTheme()"
     ></kafka-tools-window-controls>

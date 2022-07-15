@@ -1,0 +1,6 @@
+<input
+    #input
+    placeholder="Kafka message"
+    (keydown.enter)="sendMessage(input.value)"
+/>
+<button mat-button (click)="sendMessage(input.value)">send</button>

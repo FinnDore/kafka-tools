@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { KafkaMessage } from '../../../../_interfaces/kafka-message.model';
+import { KafkaMessage } from '../../../../shared/_interfaces/kafka-message.model';
 
 @Component({
     selector: 'kafka-tools-message',

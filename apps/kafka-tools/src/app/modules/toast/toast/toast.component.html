@@ -1,0 +1,10 @@
+<div [ngClass]="options.level" class="kafka-tool-toast-component" mat-ripple>
+    <div class="toast">
+        <div class="title">
+            {{ options.title ?? options.level }}
+        </div>
+        <div class="body">
+            {{ options.content }}
+        </div>
+    </div>
+</div>

@@ -8,49 +8,25 @@
     overflow: hidden scroll;
     padding: 0 1rem;
 }
+
 .footer {
     display: flex;
 }
 
-.message-input,
 .topic-input {
     height: 3.25em;
     display: flex;
     margin: 1rem;
     border-radius: var(--border-radius) !important;
     overflow: hidden;
-}
-
-.message-input {
-    flex: 1;
-    margin-right: 0.5rem;
-
-    &,
-    input,
-    button {
-        background: var(--theme-background-light-10);
-        color: var(--theme-text);
-        border: none;
-    }
-
-    input {
-        flex: 1;
-
-        padding-left: 1rem;
-    }
-
-    button {
-        background: var(--theme-background-light-20);
-    }
-}
-
-.topic-input {
-    margin-left: 0.5rem;
     &,
     input {
         background: var(--theme-background-light-10);
         color: var(--theme-text);
         border: none;
+    }
+    input {
+        width: 5rem;
     }
 
     .topic {
@@ -59,9 +35,5 @@
         font-weight: bolder;
         color: var(--theme-success);
         font-variant: all-small-caps;
-    }
-
-    input {
-        width: 5rem;
     }
 }

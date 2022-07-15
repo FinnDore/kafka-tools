@@ -3,16 +3,16 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
-    ViewChild,
+    ViewChild
 } from '@angular/core';
 import { invoke } from '@tauri-apps/api';
 import { Event, listen } from '@tauri-apps/api/event';
-import { KafkaMessage } from '../../../_interfaces/kafka-message.model';
+import { KafkaMessage } from '../../../shared/_interfaces/kafka-message.model';
 @Component({
     selector: 'kafka-tools-producer',
     templateUrl: './producer.component.html',
     styleUrls: ['./producer.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProducerComponent {
     readonly broker = 'localhost:9092';
@@ -25,23 +25,7 @@ export class ProducerComponent {
     @ViewChild('terminalFooter', { read: ElementRef })
     terminalFooter!: ElementRef<HTMLDivElement>;
 
-    /**
-     * constructor for the producer component
-     * @param ref the CD ref
-     */
-    constructor(private ref: ChangeDetectorRef) {
-        this.listenForEvent();
-        this.listenToTopic('topic-test');
-    }
-
-    /**
-     * Sends a kafka message to a topic
-     * @param topic the topic to send the message to
-     * @param message the message to send
-     */
-    sendMessage(topic: string, message: string): void {
-        invoke('send_kafka_message', { topic, message });
-    }
+    constructor(private ref: ChangeDetectorRef) {}
 
     /**
      * Listens to a kafka topic
@@ -56,7 +40,7 @@ export class ProducerComponent {
     }
 
     /**
-     * unlistens to a kafka topic
+     * Unlistens to a kafka topic
      * @param topic the topic to listen to
      */
     unsubscribeToTopic(topic: string): void {
@@ -83,11 +67,6 @@ export class ProducerComponent {
             return;
         }
 
-        console.log(
-            `%c KAFKA-MESSAGE - ${m.topic} `,
-            'background: #8000ff; color: white; font-weight: bolder',
-            `: ${m.payload}`
-        );
         const terminal = this.terminal.nativeElement;
         const should_scroll =
             Math.abs(

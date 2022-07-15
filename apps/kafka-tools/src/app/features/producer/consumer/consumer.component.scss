@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    height: 3.25em;
+    flex: 1;
+    margin-right: 0.5rem;
+    margin: 1rem;
+    border-radius: var(--border-radius) !important;
+
+    &,
+    input,
+    button {
+        background: var(--theme-background-light-10);
+        color: var(--theme-text);
+        border: none;
+    }
+
+    input {
+        flex: 1;
+
+        padding-left: 1rem;
+    }
+
+    button {
+        background: var(--theme-background-light-20);
+    }
+}

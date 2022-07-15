@@ -5,19 +5,7 @@
 </div>
 
 <div class="footer">
-    <div class="message-input">
-        <input
-            #input
-            placeholder="Kafka message"
-            (keydown.enter)="sendMessage(topicNameInput.value, input.value)"
-        />
-        <button
-            mat-button
-            (click)="sendMessage(topicNameInput.value, input.value)"
-        >
-            send
-        </button>
-    </div>
+    <kafka-tools-consumer [topic]="this.currentTopic"></kafka-tools-consumer>
     <div class="topic-input">
         <div class="topic">topic :</div>
         <input
