@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.3.0](https://github.com/FinnDore/kafka-tools/compare/v0.2.0...v0.3.0) (2022-07-15)
+
+
+### Features
+
+* **kafka-tools:** added error toasts to display generic errors ([#42](https://github.com/FinnDore/kafka-tools/issues/42)) ([0b680ce](https://github.com/FinnDore/kafka-tools/commit/0b680ce706740977d56683dc85be2c7f0a90d6e6))
+
+
+
 # [0.2.0](https://github.com/FinnDore/kafka-tools/compare/v0.1.6...v0.2.0) (2022-04-03)
 
 
