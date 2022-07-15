@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './routing/app-routing.module';
-import { WindowControlsModule } from './modules/window-controls/window-controls.module';
 import { ToastModule } from './modules/toast';
-import { ConsumerComponent } from './features/producer/consumer/consumer.component';
+import { WindowControlsModule } from './modules/window-controls/window-controls.module';
+import { AppRoutingModule } from './routing/app-routing.module';
 
 @NgModule({
     imports: [
