@@ -8,7 +8,6 @@ import {
 import { invoke } from '@tauri-apps/api';
 import { Event, listen } from '@tauri-apps/api/event';
 import { KafkaMessage } from '../../../shared/_interfaces/kafka-message.model';
-import { ToasterStore, ToastLevel } from '../../modules/toast';
 @Component({
     selector: 'kafka-tools-producer',
     templateUrl: './producer.component.html',
@@ -26,26 +25,7 @@ export class ProducerComponent {
     @ViewChild('terminalFooter', { read: ElementRef })
     terminalFooter!: ElementRef<HTMLDivElement>;
 
-    constructor(
-        private ref: ChangeDetectorRef,
-        private toastStore: ToasterStore
-    ) {
-        this.listenForEvent();
-        this.listenToTopic('topic-test');
-        this.popToast(ToastLevel.SUCCESS);
-        this.popToast(ToastLevel.ERROR);
-        this.popToast(ToastLevel.ATTENTION);
-        this.popToast(ToastLevel.INFO);
-    }
-
-    popToast(level: ToastLevel = ToastLevel.SUCCESS) {
-        this.toastStore.pop({
-            title: 'connected',
-            content:
-                'Connected to broker. You can now send messages to a topic of your choice.',
-            level
-        });
-    }
+    constructor(private ref: ChangeDetectorRef) {}
 
     /**
      * Listens to a kafka topic
