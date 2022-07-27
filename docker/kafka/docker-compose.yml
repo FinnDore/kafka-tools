@@ -78,7 +78,7 @@ services:
             KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka1 -Dcom.sun.management.jmxremote.rmi.port=9998
 
     schemaregistry0:
-        image: confluentinc/cp-schema-registry:5.5.0
+        image: confluentinc/cp-schema-registry:5.5.11
         ports:
             - 8085:8085
         depends_on:
@@ -96,7 +96,7 @@ services:
             SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas
 
     schemaregistry1:
-        image: confluentinc/cp-schema-registry:5.5.0
+        image: confluentinc/cp-schema-registry:5.5.11
         ports:
             - 18085:8085
         depends_on:
