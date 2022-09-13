@@ -59,7 +59,7 @@
         "@nrwl/web": "13.8.4",
         "@nrwl/workspace": "13.8.4",
         "@types/jest": "27.4.1",
-        "@types/node": "16.11.7",
+        "@types/node": "16.11.59",
         "@typescript-eslint/eslint-plugin": "5.10.2",
         "@typescript-eslint/parser": "5.10.2",
         "cypress": "9.5.2",
